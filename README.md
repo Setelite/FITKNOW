@@ -33,3 +33,11 @@
 - `sw.js` — кеширование для повторного открытия без сети
 
 Никакие API-ключи и персональные медицинские данные не должны добавляться в общедоступный репозиторий.
+
+## FITKNOW 3D Sticker Pack (NEON V4)
+
+The user-approved promo sticker pack has 14 transparent PNG icons. App code on `main` attempts to load them from `./stickers3d/<name>.png` first, and falls back to `https://gornostaevmarketing.ru/fitknow/assets/stickers/<name>.png`. The pre-existing SVG illustrations remain as the last fallback until the PNG assets are uploaded.
+
+Upload the contents of **`GitHub_загрузить_в_репозиторий/stickers3d/`** from the FITKNOW NEON V4 release archive into **`stickers3d/`** at the root of this repository. Do not rename the files. Once the binary images are committed, the app can load the approved sticker artwork directly from its own origin, including after installation as a PWA.
+
+The landing-page archive is published separately to the `/fitknow/` folder on the site host; site deployment and GitHub Pages activation are not automated by this repo.
