@@ -7,6 +7,10 @@
 
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="FITKNOW">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="description" content="FITKNOW — удобный план тренировок, питания и личных заметок.">
 <meta name="theme-color" content="#f5f7fb">
 <title>FITKNOW — твой фитнес-план</title>
 <style>
@@ -1515,6 +1519,14 @@ function initFitknowIllustrations(){
 }
 initFitknowIllustrations();
 
+</script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('./sw.js').catch(function () {});
+  });
+}
 </script>
 </body>
 </html>
