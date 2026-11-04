@@ -1,0 +1,1520 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="FITKNOW">
+<meta name="theme-color" content="#f5f7fb">
+<title>FITKNOW — твой фитнес-план</title>
+<style>
+  :root{
+    --bg:#0f1712;
+    --card:#182420;
+    --card2:#1e2d27;
+    --line:#2a3a33;
+    --lime:#c8f169;
+    --lime-dim:#8fae4a;
+    --orange:#ff9a52;
+    --blue:#6ec3ff;
+    --text:#eef3ee;
+    --text-dim:#9fb0a8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  body{
+    margin:0; padding:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:520px; margin:0 auto; padding:20px 16px 60px;}
+
+  .hero{
+    padding:28px 4px 20px;
+  }
+  .hero h1{
+    font-size:30px;
+    line-height:1.1;
+    margin:0 0 4px;
+    font-weight:800;
+    letter-spacing:-0.01em;
+  }
+  .hero .sub{
+    color:var(--text-dim);
+    font-size:15px;
+    margin:0;
+  }
+
+  .macros{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+    margin:18px 0 8px;
+  }
+  .macro-box{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:14px 8px;
+    text-align:center;
+  }
+  .macro-box .num{
+    font-size:26px;
+    font-weight:800;
+    display:block;
+    line-height:1;
+  }
+  .macro-box .num span{font-size:14px; font-weight:600; opacity:.7;}
+  .macro-box .lbl{
+    font-size:12px;
+    color:var(--text-dim);
+    margin-top:6px;
+    display:block;
+  }
+  .protein .num{color:var(--lime);}
+  .fat .num{color:var(--orange);}
+  .carb .num{color:var(--blue);}
+  .kcal-line{
+    text-align:center;
+    color:var(--text-dim);
+    font-size:14px;
+    margin:2px 0 22px;
+  }
+  .kcal-line b{color:var(--text); font-size:17px;}
+
+  /* Tabs */
+  .tab-radio{
+    position:absolute;
+    opacity:0;
+    pointer-events:none;
+  }
+  .tabs{
+    display:flex;
+    gap:6px;
+    background:var(--card);
+    border-radius:14px;
+    padding:5px;
+    margin-bottom:18px;
+    border:1px solid var(--line);
+  }
+  .tab-btn{
+    flex:1;
+    display:block;
+    text-align:center;
+    background:transparent;
+    border:none;
+    color:var(--text-dim);
+    font-size:12.5px;
+    font-weight:700;
+    padding:10px 2px;
+    border-radius:10px;
+    font-family:inherit;
+  }
+  #tab-food:checked ~ .tabs label[for="tab-food"],
+  #tab-cardio:checked ~ .tabs label[for="tab-cardio"],
+  #tab-foods:checked ~ .tabs label[for="tab-foods"],
+  #tab-train:checked ~ .tabs label[for="tab-train"],
+  #tab-health:checked ~ .tabs label[for="tab-health"],
+  #tab-supplements:checked ~ .tabs label[for="tab-supplements"],
+  #tab-analyses:checked ~ .tabs label[for="tab-analyses"],
+  #tab-data:checked ~ .tabs label[for="tab-data"]{
+    background:var(--lime);
+    color:#10190f;
+  }
+  .panel{display:none;}
+  #tab-food:checked ~ #food,
+  #tab-cardio:checked ~ #cardio,
+  #tab-foods:checked ~ #foods,
+  #tab-train:checked ~ #train,
+  #tab-health:checked ~ #health,
+  #tab-supplements:checked ~ #supplements,
+  #tab-analyses:checked ~ #analyses,
+  #tab-data:checked ~ #datahub{
+    display:block;
+  }
+
+  .section-title{
+    font-size:13px;
+    font-weight:700;
+    color:var(--lime);
+    margin:22px 0 10px;
+    padding-left:2px;
+  }
+  .section-title:first-child{margin-top:0;}
+
+  /* nested day tabs for training */
+  .day-radio{position:absolute; opacity:0; pointer-events:none;}
+  .day-tabs{display:flex; gap:6px; margin-bottom:16px; flex-wrap:wrap;}
+  .day-btn{
+    flex:1 1 30%;
+    min-width:60px;
+    text-align:center;
+    background:var(--card);
+    border:1px solid var(--line);
+    color:var(--text-dim);
+    font-size:12px;
+    font-weight:800;
+    padding:9px 4px;
+    border-radius:12px;
+  }
+  #tday1:checked ~ .day-tabs label[for="tday1"],
+  #tday2:checked ~ .day-tabs label[for="tday2"],
+  #tday3:checked ~ .day-tabs label[for="tday3"],
+  #tday4:checked ~ .day-tabs label[for="tday4"],
+  #tday5:checked ~ .day-tabs label[for="tday5"],
+  #tday6:checked ~ .day-tabs label[for="tday6"],
+  #tday7:checked ~ .day-tabs label[for="tday7"]{
+    background:var(--orange);
+    border-color:var(--orange);
+    color:#2a1608;
+  }
+  .day-panel{display:none;}
+  #tday1:checked ~ #tday1c,
+  #tday2:checked ~ #tday2c,
+  #tday3:checked ~ #tday3c,
+  #tday4:checked ~ #tday4c,
+  #tday5:checked ~ #tday5c,
+  #tday6:checked ~ #tday6c,
+  #tday7:checked ~ #tday7c{display:block;}
+
+  .warmup-note{
+    display:flex; gap:10px; align-items:center;
+    background:rgba(255,154,82,.1);
+    border-radius:12px; padding:11px 14px;
+    margin-bottom:12px; font-size:13px; color:var(--text-dim);
+  }
+  .ex-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:12px 15px;
+    margin-bottom:9px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+  }
+  .ex-card .ex-n{
+    font-size:15px;
+    font-weight:700;
+    line-height:1.3;
+  }
+  .ex-card .ex-s{
+    font-size:14px;
+    font-weight:800;
+    color:var(--lime);
+    background:rgba(200,241,105,.12);
+    padding:4px 10px;
+    border-radius:20px;
+    white-space:nowrap;
+  }
+
+  .meal-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:16px 16px 14px;
+    margin-bottom:12px;
+  }
+  .meal-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    margin-bottom:10px;
+  }
+  .meal-name{
+    font-size:17px;
+    font-weight:800;
+  }
+  .meal-time{
+    font-size:15px;
+    font-weight:700;
+    color:var(--orange);
+    background:rgba(255,154,82,.12);
+    padding:3px 10px;
+    border-radius:20px;
+  }
+  .meal-note{
+    font-size:12.5px;
+    color:var(--text-dim);
+    margin:-4px 0 10px;
+  }
+  .food-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:9px 0;
+    border-top:1px solid var(--line);
+    font-size:16px;
+  }
+  .food-row:first-of-type{border-top:none;}
+  .food-amt{
+    font-weight:800;
+    color:var(--lime);
+    white-space:nowrap;
+    padding-left:10px;
+    font-size:16px;
+  }
+
+  .rule-card{
+    background:var(--card2);
+    border-left:4px solid var(--lime);
+    border-radius:10px;
+    padding:14px 14px;
+    margin-bottom:10px;
+    font-size:14.5px;
+    line-height:1.5;
+  }
+  .rule-card b{color:var(--lime);}
+
+  /* Weekly grid */
+  .week-grid{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:6px;
+    margin-bottom:18px;
+  }
+  .day-box{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:10px 2px 8px;
+    text-align:center;
+  }
+  .day-box.rest{
+    background:rgba(255,154,82,.08);
+    border-color:rgba(255,154,82,.35);
+  }
+  .day-box .d{
+    font-size:11px;
+    color:var(--text-dim);
+    display:block;
+    margin-bottom:6px;
+    font-weight:700;
+  }
+  .day-box .icon{font-size:20px; display:block; margin-bottom:4px;}
+  .day-box .lab{font-size:10px; font-weight:700; color:var(--lime);}
+  .day-box.rest .lab{color:var(--orange);}
+
+  .cardio-opt{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:14px 16px;
+    margin-bottom:10px;
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+  }
+  .cardio-opt .num-badge{
+    background:var(--lime);
+    color:#10190f;
+    font-weight:800;
+    font-size:15px;
+    width:28px; height:28px;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+  .cardio-opt .txt b{display:block; font-size:15.5px; margin-bottom:2px;}
+  .cardio-opt .txt span{font-size:13.5px; color:var(--text-dim);}
+
+  .big-stat{
+    display:flex;
+    justify-content:space-between;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:16px;
+    margin-bottom:18px;
+  }
+  .big-stat div{text-align:center; flex:1;}
+  .big-stat .v{font-size:24px; font-weight:800; color:var(--lime); display:block;}
+  .big-stat .l{font-size:11.5px; color:var(--text-dim); margin-top:2px; display:block;}
+
+  /* Food table */
+  .food-table{width:100%; border-collapse:collapse; margin-bottom:8px;}
+  .food-table th{
+    text-align:left;
+    font-size:11px;
+    color:var(--text-dim);
+    font-weight:700;
+    padding:0 8px 8px 0;
+  }
+  .food-table th:last-child, .food-table td:last-child{text-align:right;}
+  .prod-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:14px 16px;
+    margin-bottom:8px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .prod-card .pname{font-size:16px; font-weight:700;}
+  .prod-card .puse{font-size:12.5px; color:var(--text-dim); margin-top:2px;}
+  .prod-card .pkcal{
+    font-size:19px;
+    font-weight:800;
+    color:var(--lime);
+    text-align:right;
+    white-space:nowrap;
+    padding-left:12px;
+  }
+  .prod-card .pkcal span{font-size:11px; font-weight:600; color:var(--text-dim); display:block;}
+
+  .footer-note{
+    text-align:center;
+    color:var(--text-dim);
+    font-size:12px;
+    margin-top:28px;
+    line-height:1.6;
+  }
+
+  /* Tracker */
+  .add-row{
+    display:flex;
+    gap:8px;
+    margin-bottom:16px;
+  }
+  .add-row input{
+    flex:1;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:12px 14px;
+    color:var(--text);
+    font-size:16px;
+    font-family:inherit;
+  }
+  .add-row input::placeholder{color:var(--text-dim);}
+  .add-btn{
+    background:var(--lime);
+    color:#10190f;
+    border:none;
+    border-radius:12px;
+    padding:0 18px;
+    font-weight:800;
+    font-size:22px;
+    font-family:inherit;
+  }
+  .avg-hero{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:18px;
+    text-align:center;
+    margin-bottom:16px;
+  }
+  .avg-hero .v{font-size:36px; font-weight:800; color:var(--lime); display:block; line-height:1;}
+  .avg-hero .l{font-size:13px; color:var(--text-dim); margin-top:6px; display:block;}
+  .avg-hero .trend{font-size:13px; margin-top:4px; display:block; font-weight:700;}
+  .entry-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:10px 14px;
+    margin-bottom:6px;
+  }
+  .entry-row .ed{font-size:13px; color:var(--text-dim);}
+  .entry-row .ew{font-size:17px; font-weight:800;}
+  .entry-row .edel{
+    background:none; border:none; color:var(--text-dim);
+    font-size:18px; padding:2px 6px; font-family:inherit;
+  }
+  .empty-msg{color:var(--text-dim); font-size:13.5px; text-align:center; padding:14px 0;}
+
+  .check-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:13px 14px;
+    margin-bottom:8px;
+    font-size:15px;
+  }
+  .check-item input[type="checkbox"]{
+    width:22px; height:22px; flex-shrink:0;
+    accent-color:var(--lime);
+  }
+  .check-item.checked{opacity:.5;}
+  .reset-btn{
+    width:100%;
+    background:transparent;
+    border:1px solid var(--line);
+    color:var(--text-dim);
+    border-radius:12px;
+    padding:12px;
+    font-size:13px;
+    font-family:inherit;
+    margin-top:10px;
+  }
+
+  /* 10-week protocol cards */
+  .protocol-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:15px 16px;
+    margin-bottom:10px;
+  }
+  .protocol-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:10px;
+    margin-bottom:9px;
+  }
+  .protocol-name{font-size:16px;font-weight:800;line-height:1.25;}
+  .protocol-dose{
+    color:var(--lime);
+    font-size:14px;
+    font-weight:800;
+    white-space:nowrap;
+    background:rgba(200,241,105,.10);
+    padding:4px 9px;
+    border-radius:20px;
+  }
+  .protocol-row{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    border-top:1px solid var(--line);
+    padding:8px 0 0;
+    margin-top:8px;
+    font-size:14px;
+  }
+  .protocol-row span:first-child{color:var(--text-dim);}
+  .protocol-row b{text-align:right;}
+  .protocol-warning{
+    background:rgba(255,154,82,.08);
+    border:1px solid rgba(255,154,82,.28);
+    border-radius:14px;
+    padding:13px 14px;
+    margin-bottom:12px;
+    color:var(--text-dim);
+    font-size:13px;
+    line-height:1.5;
+  }
+
+
+  /* Training working-weight tracker */
+  .ex-card{
+    flex-wrap:wrap;
+  }
+  .ex-main{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    width:100%;
+  }
+  .weight-row{
+    width:100%;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding-top:10px;
+    margin-top:4px;
+    border-top:1px solid var(--line);
+  }
+  .weight-label{
+    font-size:12px;
+    color:var(--text-dim);
+    font-weight:700;
+    white-space:nowrap;
+  }
+  .weight-input{
+    flex:1;
+    min-width:0;
+    background:var(--card2);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:9px 10px;
+    color:var(--text);
+    font-size:16px;
+    font-weight:800;
+    font-family:inherit;
+    outline:none;
+  }
+  .weight-input:focus{
+    border-color:var(--lime);
+  }
+  .weight-unit{
+    font-size:13px;
+    color:var(--text-dim);
+    font-weight:700;
+  }
+  .weight-saved{
+    font-size:11px;
+    color:var(--lime);
+    min-width:64px;
+    text-align:right;
+    opacity:0;
+    transition:opacity .2s ease;
+  }
+  .weight-saved.show{opacity:1;}
+  .training-tools{
+    display:flex;
+    gap:8px;
+    margin:0 0 14px;
+  }
+  .training-tool-btn{
+    flex:1;
+    background:var(--card);
+    border:1px solid var(--line);
+    color:var(--text-dim);
+    border-radius:12px;
+    padding:10px 8px;
+    font-size:12px;
+    font-weight:800;
+    font-family:inherit;
+  }
+
+  /* FITKNOW visual system */
+  :root{
+    --bg:#eef3fb;
+    --bg2:#fdfefe;
+    --card:rgba(255,255,255,.72);
+    --card2:rgba(244,247,252,.88);
+    --line:rgba(94,112,145,.16);
+    --lime:#6d5dfc;
+    --lime-dim:#7c70e8;
+    --orange:#ff7a59;
+    --blue:#21a6df;
+    --text:#172033;
+    --text-dim:#68738a;
+    --glass-shadow:0 18px 55px rgba(50,63,95,.12);
+    --glass:rgba(255,255,255,.72);
+    --glass-strong:rgba(255,255,255,.9);
+    --glass-border:rgba(94,112,145,.18);
+    --shadow:var(--glass-shadow);
+    --accent:#6d5dfc;
+    color-scheme:light;
+  }
+  html[data-theme="dark"]{
+    --bg:#0b1020;
+    --bg2:#11182b;
+    --card:rgba(23,31,53,.72);
+    --card2:rgba(31,41,67,.86);
+    --line:rgba(188,203,235,.15);
+    --lime:#a99fff;
+    --lime-dim:#8f84f4;
+    --orange:#ff9a72;
+    --blue:#64c8f3;
+    --text:#f5f7ff;
+    --text-dim:#aab4cb;
+    --glass-shadow:0 22px 65px rgba(0,0,0,.32);
+    --glass:rgba(23,31,53,.72);
+    --glass-strong:rgba(31,41,67,.92);
+    --glass-border:rgba(188,203,235,.16);
+    --shadow:var(--glass-shadow);
+    --accent:#a99fff;
+    color-scheme:dark;
+  }
+  body{
+    min-height:100vh;
+    background:
+      radial-gradient(circle at 8% 0%,rgba(112,92,255,.20),transparent 33%),
+      radial-gradient(circle at 95% 16%,rgba(51,200,230,.20),transparent 31%),
+      linear-gradient(165deg,var(--bg2),var(--bg));
+    transition:background .25s ease,color .25s ease;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+    background:linear-gradient(120deg,rgba(255,255,255,.22),transparent 35%,rgba(255,255,255,.08));
+  }
+  .wrap{max-width:640px;padding:18px 14px 84px;}
+  .hero{padding:14px 4px 18px;}
+  .brand-row{display:flex;align-items:center;justify-content:space-between;gap:16px;}
+  .brand-kicker{display:block;color:var(--lime);font-size:11px;font-weight:900;letter-spacing:.11em;text-transform:uppercase;margin-bottom:6px;}
+  .hero h1{font-size:38px;letter-spacing:-.045em;background:linear-gradient(105deg,#6d5dfc,#14b8c8 58%,#ff7a59);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .hero .sub{font-size:15px;line-height:1.45;max-width:430px;margin-top:7px;}
+  .theme-toggle{
+    width:52px;height:52px;border:1px solid var(--line);border-radius:17px;
+    background:var(--card);color:var(--text);font-size:22px;font-weight:800;
+    box-shadow:var(--glass-shadow);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  }
+  .tabs{
+    position:sticky;top:8px;z-index:20;overflow-x:auto;scrollbar-width:none;
+    justify-content:flex-start;padding:7px;gap:7px;border-radius:20px;
+    background:var(--card);box-shadow:var(--glass-shadow);
+    backdrop-filter:blur(22px) saturate(145%);-webkit-backdrop-filter:blur(22px) saturate(145%);
+  }
+  .tabs::-webkit-scrollbar{display:none;}
+  .tab-btn{flex:0 0 auto;min-width:112px;padding:14px 14px;font-size:14px;border-radius:14px;cursor:pointer;}
+  #tab-food:checked ~ .tabs label[for="tab-food"],
+  #tab-cardio:checked ~ .tabs label[for="tab-cardio"],
+  #tab-foods:checked ~ .tabs label[for="tab-foods"],
+  #tab-train:checked ~ .tabs label[for="tab-train"],
+  #tab-health:checked ~ .tabs label[for="tab-health"],
+  #tab-supplements:checked ~ .tabs label[for="tab-supplements"],
+  #tab-analyses:checked ~ .tabs label[for="tab-analyses"],
+  #tab-data:checked ~ .tabs label[for="tab-data"]{
+    color:#fff;background:linear-gradient(135deg,#6d5dfc,#4988ff);box-shadow:0 8px 22px rgba(90,91,235,.28);
+  }
+  .panel{animation:panelIn .26s ease both;}
+  @keyframes panelIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+  .macro-box,.meal-card,.prod-card,.ex-card,.protocol-card,.rule-card,.big-stat,.water-row,.check-item,.import-card{
+    background:var(--card);border:1px solid var(--line);box-shadow:var(--glass-shadow);
+    backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);
+  }
+  .macro-box,.meal-card,.protocol-card,.big-stat,.import-card{border-radius:22px;}
+  .meal-card,.protocol-card,.ex-card{padding:18px;}
+  .section-title{font-size:14px;color:var(--lime);font-weight:900;letter-spacing:.02em;text-transform:uppercase;margin-top:28px;}
+  .training-tools{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .training-tool-btn,.action-btn,.file-label{
+    min-height:50px;border-radius:15px;padding:13px 14px;font-size:14px;font-weight:850;font-family:inherit;
+    border:1px solid var(--line);background:var(--card2);color:var(--text);cursor:pointer;text-align:center;
+  }
+  .action-btn.primary{border:0;color:#fff;background:linear-gradient(135deg,#6d5dfc,#478dff);box-shadow:0 10px 24px rgba(90,91,235,.27);}
+  .action-btn.danger{color:var(--orange);}
+  .day-btn{min-height:48px;font-size:14px;border-radius:15px;background:var(--card);box-shadow:0 8px 20px rgba(50,63,95,.07);}
+  .weight-input{min-height:46px;font-size:18px;border-radius:13px;}
+  .import-card{padding:18px;margin-bottom:16px;}
+  .import-card h2{font-size:19px;margin:0 0 6px;}
+  .import-card p{font-size:13px;color:var(--text-dim);line-height:1.5;margin:0 0 13px;}
+  .import-textarea{
+    width:100%;min-height:168px;resize:vertical;border:1px solid var(--line);border-radius:16px;
+    padding:14px;background:var(--card2);color:var(--text);font:500 15px/1.55 inherit;outline:none;
+  }
+  .import-textarea:focus{border-color:var(--lime);box-shadow:0 0 0 3px rgba(109,93,252,.13);}
+  .import-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px;}
+  .file-label input{display:none;}
+  .import-status{min-height:18px;margin-top:9px;font-size:12px;font-weight:750;color:var(--text-dim);}
+  .import-status.ok{color:#199768}.import-status.error{color:#e45757}
+  .section-intro{font-size:14px;color:var(--text-dim);line-height:1.55;margin:-2px 0 16px;}
+  .control-grid{display:grid;gap:9px;margin-top:15px;}
+  .control-grid .check-item{margin:0;}
+  .data-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:14px 0;}
+  .data-card{padding:18px;border:1px solid var(--glass-border);border-radius:22px;background:var(--glass);box-shadow:var(--shadow);}
+  .data-card h3{margin:0 0 7px;font-size:17px;}.data-card p{margin:0 0 13px;color:var(--text-dim);font-size:13px;line-height:1.5;}
+  .data-select{width:100%;min-height:48px;margin:0 0 10px;padding:0 14px;border:1px solid var(--glass-border);border-radius:15px;background:var(--glass-strong);color:var(--text);font:inherit;font-weight:750;}
+  .editable-surface.is-editing{outline:2px dashed var(--accent);outline-offset:6px;border-radius:16px;min-height:70px;}
+  .editable-surface.is-editing [contenteditable="true"]:focus{outline:none;}
+  .edit-banner{display:none;margin:10px 0 16px;padding:12px 14px;border-radius:15px;background:color-mix(in srgb,var(--accent) 12%,transparent);color:var(--text);font-weight:750;font-size:13px;}
+  .edit-banner.show{display:block;}
+  .data-actions{display:flex;flex-wrap:wrap;gap:9px}.data-actions .btn{flex:1 1 160px;}
+
+  /* Larger mobile-first typography and controls */
+  body{font-size:17px;line-height:1.58;}
+  .hero .sub{font-size:17px;line-height:1.55;}
+  .section-title{font-size:16px;line-height:1.35;margin-top:30px;}
+  .section-intro,.import-card p,.data-card p{font-size:16px;line-height:1.62;}
+  .food-row,.rule-card,.protocol-row,.water-row,.check-item,.warmup-note{font-size:16px;line-height:1.55;}
+  .prod-card .pname,.ex-n,.protocol-name{font-size:17px;line-height:1.4;}
+  .prod-card .puse,.ex-s,.protocol-dose,.weight-label{font-size:14px;line-height:1.5;}
+  .macro-box .lbl,.prod-card .pkcal span{font-size:14px;}
+  .kcal-line{font-size:16px;line-height:1.5;}
+  .import-status{font-size:14px;line-height:1.45;}
+  .tab-btn{min-width:124px;min-height:56px;padding:16px;font-size:16px;display:flex;align-items:center;justify-content:center;}
+  .theme-toggle{position:relative;z-index:30;width:58px;height:58px;flex:0 0 58px;font-size:25px;cursor:pointer;touch-action:manipulation;}
+  button,.btn,.action-btn,.training-tool-btn,.file-picker,.file-label,.day-btn{
+    min-height:54px;font-size:16px;line-height:1.25;padding:15px 16px;touch-action:manipulation;
+  }
+  .data-select{min-height:54px;font-size:16px;}
+  .import-textarea{font-size:17px;line-height:1.6;padding:16px;}
+  input.weight-input{min-height:52px;font-size:20px;}
+  @media(max-width:620px){.data-grid{grid-template-columns:1fr}.data-card{padding:15px}.data-actions .btn{width:100%;flex-basis:100%;}}
+  @media(max-width:420px){
+    .hero h1{font-size:34px}.tab-btn{min-width:118px}.training-tools,.import-actions{grid-template-columns:1fr}.weight-saved{display:none}.weight-label{font-size:13px}
+  }
+
+  .illustrated-welcome{display:flex;align-items:center;gap:14px;margin:0 0 20px;padding:16px 18px;border:1px solid var(--line);border-radius:25px;background:var(--card);box-shadow:var(--glass-shadow);overflow:hidden;}
+  .illustrated-welcome h2{font-size:21px;line-height:1.25;margin:0 0 5px;letter-spacing:-.025em;}
+  .illustrated-welcome p{font-size:15px;line-height:1.5;margin:0;color:var(--text-dim);}
+  .fit-sticker{display:block;flex:0 0 102px;width:102px;height:102px;border-radius:25px;background-color:#f1efff;background-size:300% 200%;background-repeat:no-repeat;transform:rotate(-5deg);box-shadow:0 8px 22px rgba(109,93,252,.12);}
+  .fit-sticker.food{background-position:50% 0}.fit-sticker.train{background-position:0 0}.fit-sticker.cardio{background-position:100% 0}.fit-sticker.supplements{background-position:0 100%}.fit-sticker.analyses{background-position:50% 100%}.fit-sticker.data{background-position:100% 100%}
+  .welcome-tag{display:inline-block;font-size:11px;line-height:1.3;letter-spacing:.08em;font-weight:850;color:var(--lime);text-transform:uppercase;margin-bottom:7px;}
+  html[data-theme="dark"] .fit-sticker{box-shadow:0 6px 26px rgba(169,159,255,.17);}
+  @media(max-width:380px){.fit-sticker{width:82px;height:82px;flex-basis:82px}.illustrated-welcome{padding:14px;gap:12px}.illustrated-welcome h2{font-size:19px}}
+  .fit-sticker{background-image:url("data:image/webp;base64,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");}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="brand-row">
+      <div><span class="brand-kicker">Персональный фитнес-органайзер</span><h1>FITKNOW</h1></div>
+      <button class="theme-toggle" id="themeToggle" type="button" onclick="toggleTheme()" aria-label="Переключить тему">☾</button>
+    </div>
+    <p class="sub">Тренировки, питание, добавки и контроль — в одном месте</p>
+  </div>
+
+  <div class="macros">
+    <div class="macro-box protein"><span class="num">—</span><span class="lbl">белок</span></div>
+    <div class="macro-box fat"><span class="num">—</span><span class="lbl">жиры</span></div>
+    <div class="macro-box carb"><span class="num">—</span><span class="lbl">углеводы</span></div>
+  </div>
+  <p class="kcal-line">Загрузите свой персональный план во вкладке «Данные».</p>
+
+  <input type="radio" name="tabgroup" id="tab-food" class="tab-radio" checked>
+  <input type="radio" name="tabgroup" id="tab-cardio" class="tab-radio">
+  <input type="radio" name="tabgroup" id="tab-foods" class="tab-radio">
+  <input type="radio" name="tabgroup" id="tab-train" class="tab-radio">
+  <input type="radio" name="tabgroup" id="tab-health" class="tab-radio">
+  <input type="radio" name="tabgroup" id="tab-supplements" class="tab-radio">
+  <input type="radio" name="tabgroup" id="tab-analyses" class="tab-radio">
+  <input type="radio" name="tabgroup" id="tab-data" class="tab-radio">
+
+  <div class="tabs">
+    <label class="tab-btn" for="tab-food">Питание</label>
+    <label class="tab-btn" for="tab-train">Тренировки</label>
+    <label class="tab-btn" for="tab-cardio">Кардио</label>
+    <label class="tab-btn" for="tab-foods">Продукты</label>
+    <label class="tab-btn" for="tab-supplements">БАДы</label>
+    <label class="tab-btn" for="tab-analyses">Анализы</label>
+    <label class="tab-btn" for="tab-health">Личные записи</label>
+    <label class="tab-btn" for="tab-data">Данные</label>
+  </div>
+
+  <!-- FOOD PANEL -->
+  <div id="food" class="panel active"><div class="section-title">Питание</div><div class="rule-card">Здесь пока пусто. Во вкладке «Данные» выберите раздел и загрузите свой план.</div></div>
+
+  <!-- CARDIO PANEL -->
+  <div id="cardio" class="panel"><div class="section-title">Кардио</div><div class="rule-card">Здесь пока пусто. Во вкладке «Данные» выберите раздел и загрузите свой план.</div></div>
+
+  <!-- FOODS PANEL -->
+  <div id="foods" class="panel"><div class="section-title">Продукты</div><div class="rule-card">Здесь пока пусто. Во вкладке «Данные» выберите раздел и загрузите свой план.</div></div>
+
+  <!-- TRAINING PANEL -->
+  <div id="train" class="panel">
+
+    <div class="import-card">
+      <h2>Загрузить программу тренера</h2>
+      <p>Вставь текст из заметок, Telegram или сообщения тренера. Можно также выбрать файл <b>.txt</b>, <b>.md</b>, <b>.csv</b> или <b>.json</b>. FITKNOW распознает дни, упражнения и схемы подходов.</p>
+      <textarea class="import-textarea" id="programImportText" placeholder="Пример:
+День 1 — Грудь и бицепс
+1. Жим лёжа — 4×10
+2. Сведение рук — 3×12"></textarea>
+      <div class="import-actions">
+        <label class="file-label">Выбрать файл<input id="programFileInput" type="file" accept=".txt,.md,.csv,.json,text/plain,text/markdown,application/json"></label>
+        <button class="action-btn primary" type="button" onclick="importTrainingProgram()">Импортировать</button>
+        <button class="action-btn" type="button" onclick="copyCurrentProgram()">Скопировать текущую</button>
+        <button class="action-btn danger" type="button" onclick="restoreDefaultProgram()">Вернуть исходную</button>
+      </div>
+      <div class="import-status" id="importStatus" aria-live="polite"></div>
+    </div>
+
+    <div class="training-tools">
+      <button class="training-tool-btn" onclick="clearTrainingWeights()">Очистить веса</button>
+      <button class="training-tool-btn" onclick="exportTrainingWeights()">Скопировать веса</button>
+    </div>
+
+    <div class="big-stat">
+      <div><span class="v">5×</span><span class="l">в неделю</span></div>
+      <div><span class="v">2</span><span class="l">недели</span></div>
+    </div>
+
+    <input type="radio" name="tdaytab" id="tday1" class="day-radio" checked>
+    <input type="radio" name="tdaytab" id="tday2" class="day-radio">
+    <input type="radio" name="tdaytab" id="tday3" class="day-radio">
+    <input type="radio" name="tdaytab" id="tday4" class="day-radio">
+    <input type="radio" name="tdaytab" id="tday5" class="day-radio">
+
+    <div class="day-tabs">
+      <label class="day-btn" for="tday1">Д1</label>
+      <label class="day-btn" for="tday2">Д2</label>
+      <label class="day-btn" for="tday3">Д3</label>
+      <label class="day-btn" for="tday4">Д4</label>
+      <label class="day-btn" for="tday5">Д5</label>
+    </div>
+
+    <div id="tday1c" class="day-panel"></div>
+
+    <div id="tday2c" class="day-panel"></div>
+
+    <div id="tday3c" class="day-panel"></div>
+
+    <div id="tday4c" class="day-panel"></div>
+
+    <div id="tday5c" class="day-panel"></div>
+
+    <div class="section-title">Прогрессия на 8 недель</div>
+    <div class="rule-card"><b>1–2 нед.</b> — адаптация: привычные веса, 1–2 повтора в запасе, без отказа.</div>
+    <div class="rule-card"><b>3–4 нед.</b> — сохранять объём; если техника и диапазон стабильны — постепенно добавлять нагрузку.</div>
+    <div class="rule-card"><b>5–6 нед.</b> — приоритет сохранению мышц и силы; не раздувать количество подходов, следить за восстановлением.</div>
+    <div class="rule-card"><b>7–8 нед.</b> — сохранять интенсивность силовой; без экстремальных ограничений воды, соли и углеводов.</div>
+
+    <div class="section-title">Восстановление</div>
+    <div class="rule-card">Сон — 7–9 часов. Между тяжёлыми тренировками одной группы — достаточно времени на восстановление. Работа до отказа во всех упражнениях не нужна.</div>
+    <div class="rule-card" style="border-left-color:var(--orange);">⚠️ Выраженная усталость, ухудшение сна, падение силовых или работоспособности — сигнал снизить объём тренировок.</div>
+
+    <div class="section-title">Главные правила</div>
+    <div class="rule-card">Не гнаться за снижением веса любой ценой — приоритет сохранение мышц и силовых.</div>
+    <div class="rule-card">Не превращать силовую тренировку в высокоинтенсивное кардио.</div>
+    <div class="rule-card">Не использовать экстремальные манипуляции с водой, солью и обезвоживанием.</div>
+
+  </div>
+
+  <!-- HEALTH PANEL -->
+  <div id="health" class="panel"><div class="section-title">Личные записи</div><div class="rule-card">Здесь пока пусто. Во вкладке «Данные» выберите раздел и загрузите свой план.</div></div>
+
+  <!-- SUPPLEMENTS PANEL: content is moved here from Protocol on startup -->
+  <div id="supplements" class="panel"><div class="section-title">БАДы</div><p class="section-intro">Загрузите свой список во вкладке «Данные». Приложение не назначает анализы, добавки или лечение.</p><div id="supplementsContent"><div class="rule-card">Список пока не добавлен.</div></div></div>
+
+  <!-- ANALYSES PANEL: content is moved here from Protocol on startup -->
+  <div id="analyses" class="panel"><div class="section-title">Анализы</div><p class="section-intro">Загрузите свой список во вкладке «Данные». Приложение не назначает анализы, добавки или лечение.</p><div id="analysesContent"><div class="rule-card">Список пока не добавлен.</div></div></div>
+
+  <div id="datahub" class="panel">
+    <div class="section-title">Управление данными FITKNOW</div>
+    <p class="section-intro">Загружайте сведения из заметок, сообщений тренера и текстовых файлов. Выберите раздел — новый текст заменит содержимое только этого раздела.</p>
+    <div class="edit-banner" id="editBanner">Режим редактирования включён. Откройте нужную вкладку, исправьте текст и нажмите «Сохранить изменения».</div>
+
+    <div class="data-grid">
+      <div class="data-card">
+        <h3>Импорт информации</h3>
+        <p>Поддерживаются TXT, MD, CSV и JSON. Для заметок iPhone можно просто вставить скопированный текст.</p>
+        <select class="data-select" id="dataImportTarget" aria-label="Раздел для импорта">
+          <option value="food">Питание</option>
+          <option value="supplements">БАДы</option>
+          <option value="analyses">Анализы</option>
+          <option value="cardio">Кардио</option>
+          <option value="foods">Продукты</option>
+          <option value="health">Личные записи</option>
+        </select>
+        <textarea class="import-textarea" id="dataImportText" placeholder="Вставьте информацию сюда…"></textarea>
+        <label class="file-picker">Выбрать файл<input type="file" id="dataImportFile" accept=".txt,.md,.csv,.json,text/plain,text/markdown,text/csv,application/json"></label>
+        <div class="import-status" id="dataStatus" aria-live="polite"></div>
+        <div class="data-actions">
+          <button class="btn primary" type="button" onclick="importSectionData()">Загрузить в раздел</button>
+          <button class="btn" type="button" onclick="restoreSelectedSection()">Вернуть исходное</button>
+        </div>
+      </div>
+
+      <div class="data-card">
+        <h3>Ручное редактирование</h3>
+        <p>Можно исправлять любой текст в разделах «Питание», «Кардио», «Продукты», «БАДы», «Анализы» и «Протокол».</p>
+        <div class="data-actions">
+          <button class="btn" id="editModeButton" type="button" onclick="toggleContentEditing()">Включить редактирование</button>
+          <button class="btn primary" type="button" onclick="saveAllSections()">Сохранить изменения</button>
+        </div>
+      </div>
+
+      <div class="data-card">
+        <h3>Резервная копия</h3>
+        <p>Скачайте единый файл со всеми разделами, тренировками, рабочими весами и отметками.</p>
+        <div class="data-actions">
+          <button class="btn primary" type="button" onclick="exportFitknowBackup()">Скачать копию</button>
+          <label class="file-picker">Восстановить копию<input type="file" id="backupImportFile" accept=".json,application/json"></label>
+        </div>
+      </div>
+
+      <div class="data-card">
+        <h3>Где сохраняются данные</h3>
+        <p>Изменения хранятся в браузере на текущем устройстве. Резервная копия нужна для переноса на другой iPhone или восстановления после очистки Safari.</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="footer-note">Точные КБЖУ зависят от конкретных продуктов и этикеток</p>
+</div>
+
+<script>
+function toggleCheck(cb){
+  cb.closest('.check-item').classList.toggle('checked', cb.checked);
+}
+
+// --- Training working weights: persistent localStorage ---
+const TRAINING_WEIGHT_STORAGE_KEY = 'fitknow_public_training_weights_v1';
+const CUSTOM_PROGRAM_STORAGE_KEY = 'fitknow_public_custom_training_program_v1';
+const THEME_STORAGE_KEY = 'fitknow_public_theme_v1';
+const CHECKS_STORAGE_KEY = 'fitknow_public_checks_v1';
+const SECTIONS_STORAGE_KEY = 'fitknow_public_editable_sections_v1';
+const BACKUP_FORMAT = 'FITKNOW_PUBLIC_BACKUP_V1';
+
+const DEFAULT_TRAINING_PROGRAM = [{title:'День 1 · Ваша программа',exercises:[]}];
+
+function loadCustomTrainingProgram(){
+  try{
+    const parsed = JSON.parse(localStorage.getItem(CUSTOM_PROGRAM_STORAGE_KEY) || 'null');
+    return Array.isArray(parsed) && parsed.length ? parsed : null;
+  }catch(e){ return null; }
+}
+
+let TRAINING_PROGRAM = loadCustomTrainingProgram() || DEFAULT_TRAINING_PROGRAM;
+
+function escapeTrainingText(value){
+  return String(value)
+    .replaceAll('&','&amp;')
+    .replaceAll('<','&lt;')
+    .replaceAll('>','&gt;')
+    .replaceAll('"','&quot;')
+    .replaceAll("'",'&#039;');
+}
+
+function ensureTrainingDaySlots(count){
+  const train = document.getElementById('train');
+  const tabs = train?.querySelector('.day-tabs');
+  if(!train || !tabs) return;
+
+  for(let day = 6; day <= 7; day++){
+    if(!document.getElementById('tday'+day)){
+      const radio = document.createElement('input');
+      radio.type = 'radio'; radio.name = 'tday'; radio.id = 'tday'+day; radio.className = 'day-radio';
+      train.insertBefore(radio, tabs);
+      const label = document.createElement('label');
+      label.htmlFor = radio.id; label.textContent = 'Д'+day; tabs.appendChild(label);
+      const panel = document.createElement('div');
+      panel.id = 'tday'+day+'c'; panel.className = 'day-panel'; train.appendChild(panel);
+    }
+  }
+
+  for(let day = 1; day <= 7; day++){
+    const radio = document.getElementById('tday'+day);
+    const label = tabs.querySelector('label[for="tday'+day+'"]');
+    const panel = document.getElementById('tday'+day+'c');
+    const visible = day <= count;
+    if(radio) radio.hidden = !visible;
+    if(label) label.hidden = !visible;
+    if(panel){ panel.hidden = !visible; if(!visible) panel.innerHTML = ''; }
+  }
+  if(!document.querySelector('input[name="tday"]:checked') || document.querySelector('input[name="tday"]:checked')?.hidden){
+    const first = document.getElementById('tday1');
+    if(first) first.checked = true;
+  }
+  const frequency = train.querySelector('.big-stat .v');
+  if(frequency) frequency.textContent = count+'×';
+}
+
+function renderTrainingProgram(){
+  ensureTrainingDaySlots(TRAINING_PROGRAM.length);
+  TRAINING_PROGRAM.forEach((day, dayIndex)=>{
+    const panel = document.getElementById('tday'+(dayIndex+1)+'c');
+    if(!panel) return;
+
+    const cards = day.exercises.map(([name, sets])=>`
+      <div class="ex-card">
+        <div class="ex-main">
+          <span class="ex-n">${escapeTrainingText(name)}</span>
+          <span class="ex-s">${escapeTrainingText(sets)}</span>
+        </div>
+        <div class="weight-row">
+          <span class="weight-label">Рабочий вес</span>
+          <input class="weight-input" type="number" step="0.5" min="0" inputmode="decimal" placeholder="0" aria-label="Рабочий вес: ${escapeTrainingText(name)}">
+          <span class="weight-unit">кг</span>
+          <span class="weight-saved">сохранено</span>
+        </div>
+      </div>`).join('');
+
+    panel.innerHTML = `
+      <div class="section-title">${escapeTrainingText(day.title)}</div>
+      <div class="warmup-note">Разминка — по вашему индивидуальному плану</div>
+      ${cards}`;
+  });
+}
+
+function setImportStatus(message, isError=false){
+  const el = document.getElementById('importStatus');
+  if(!el) return;
+  el.textContent = message;
+  el.classList.toggle('error', isError);
+}
+
+function normalizeImportedProgram(program){
+  if(!Array.isArray(program)) return null;
+  const clean = program.slice(0,7).map((day, index)=>{
+    const rawExercises = Array.isArray(day?.exercises) ? day.exercises : [];
+    const exercises = rawExercises.map(item=>{
+      if(Array.isArray(item)) return [String(item[0] || '').trim(), String(item[1] || 'схема не указана').trim()];
+      if(item && typeof item === 'object') return [String(item.name || '').trim(), String(item.sets || 'схема не указана').trim()];
+      return null;
+    }).filter(item=>item && item[0]);
+    return { title:String(day?.title || ('День '+(index+1))).trim(), exercises };
+  }).filter(day=>day.exercises.length);
+  return clean.length ? clean : null;
+}
+
+function parseTrainingText(raw){
+  const lines = String(raw || '').replace(/\r/g,'').replace(/\*\*/g,'').split('\n').map(line=>line.trim()).filter(Boolean);
+  const days = [];
+  let current = null;
+
+  const newDay = title=>{
+    if(current?.exercises.length) days.push(current);
+    current = {title:title || ('День '+(days.length+1)), exercises:[]};
+  };
+
+  lines.forEach(line=>{
+    const dayMatch = line.match(/^(?:#{1,3}\s*)?(?:день|тренировка)\s*(\d+)?\s*(?:[—–:\-]\s*)?(.*)$/i);
+    if(dayMatch){
+      const number = dayMatch[1] || (days.length+1);
+      const details = dayMatch[2]?.trim();
+      newDay('День '+number+(details ? ' · '+details : ''));
+      return;
+    }
+    if(!current) newDay('День 1 · Импортированная программа');
+    if(/^(разминка|продолжительность|отдых|примечани)/i.test(line)) return;
+
+    let body = line.replace(/^[-•]\s*/, '').replace(/^\d+[.)]\s*/, '').trim();
+    if(!body) return;
+    let name = body, sets = 'схема не указана';
+    const divided = body.match(/^(.*?)\s+[—–-]\s+(.+)$/);
+    if(divided){ name = divided[1].trim(); sets = divided[2].trim(); }
+    else {
+      const tail = body.match(/^(.*?)(\d+\s*[×xх]\s*\d+(?:\s*[–-]\s*\d+)?(?:.*)?)$/i);
+      if(tail){ name = tail[1].replace(/[—–,:-]+\s*$/,'').trim(); sets = tail[2].trim(); }
+    }
+    if(name) current.exercises.push([name, sets]);
+  });
+  if(current?.exercises.length) days.push(current);
+  return normalizeImportedProgram(days);
+}
+
+function applyTrainingProgram(program, sourceLabel='текста'){
+  const normalized = normalizeImportedProgram(program);
+  if(!normalized){ setImportStatus('Не удалось найти упражнения. Добавьте заголовки «День 1» и строки с упражнениями.', true); return; }
+  TRAINING_PROGRAM = normalized;
+  localStorage.setItem(CUSTOM_PROGRAM_STORAGE_KEY, JSON.stringify(normalized));
+  renderTrainingProgram();
+  initTrainingWeights();
+  const exercises = normalized.reduce((sum, day)=>sum+day.exercises.length,0);
+  setImportStatus('Загружено из '+sourceLabel+': '+normalized.length+' дн., '+exercises+' упр. Данные сохранены на устройстве.');
+}
+
+function importTrainingProgram(){
+  const value = document.getElementById('programImportText')?.value || '';
+  if(!value.trim()){ setImportStatus('Сначала вставьте программу тренировок.', true); return; }
+  try{
+    const json = JSON.parse(value);
+    if(Array.isArray(json)){ applyTrainingProgram(json, 'JSON'); return; }
+  }catch(e){}
+  applyTrainingProgram(parseTrainingText(value), 'текста');
+}
+
+function restoreDefaultProgram(){
+  if(!confirm('Вернуть исходную программу FITKNOW? Сохранённые рабочие веса останутся.')) return;
+  localStorage.removeItem(CUSTOM_PROGRAM_STORAGE_KEY);
+  TRAINING_PROGRAM = DEFAULT_TRAINING_PROGRAM;
+  renderTrainingProgram(); initTrainingWeights();
+  setImportStatus('Исходная программа восстановлена.');
+}
+
+async function copyCurrentProgram(){
+  const text = TRAINING_PROGRAM.map(day=>day.title+'\n'+day.exercises.map((ex,i)=>(i+1)+'. '+ex[0]+' — '+ex[1]).join('\n')).join('\n\n');
+  try{ await navigator.clipboard.writeText(text); setImportStatus('Текущая программа скопирована.'); }
+  catch(e){ prompt('Скопируйте программу:', text); }
+}
+
+function initProgramFileInput(){
+  const input = document.getElementById('programFileInput');
+  if(!input) return;
+  input.addEventListener('change', async()=>{
+    const file = input.files?.[0];
+    if(!file) return;
+    try{
+      const value = await file.text();
+      const textarea = document.getElementById('programImportText');
+      if(textarea) textarea.value = value;
+      if(file.name.toLowerCase().endsWith('.json')){
+        try{ applyTrainingProgram(JSON.parse(value), file.name); return; }catch(e){}
+      }
+      applyTrainingProgram(parseTrainingText(value), file.name);
+    }catch(e){ setImportStatus('Не удалось прочитать файл.', true); }
+  });
+}
+
+function loadTrainingWeightsMap(){
+  try{
+    return JSON.parse(localStorage.getItem(TRAINING_WEIGHT_STORAGE_KEY) || '{}');
+  }catch(e){
+    return {};
+  }
+}
+
+function saveTrainingWeightsMap(map){
+  localStorage.setItem(TRAINING_WEIGHT_STORAGE_KEY, JSON.stringify(map));
+}
+
+function buildExerciseKey(card, index){
+  const dayPanel = card.closest('.day-panel');
+  const dayId = dayPanel ? dayPanel.id : 'day';
+  const nameEl = card.querySelector('.ex-n');
+  const name = nameEl ? nameEl.textContent.trim() : ('exercise_'+index);
+  return dayId + '::' + name;
+}
+
+function initTrainingWeights(){
+  const stored = loadTrainingWeightsMap();
+  const cards = document.querySelectorAll('#train .ex-card');
+
+  cards.forEach((card, index)=>{
+    const input = card.querySelector('.weight-input');
+    const saved = card.querySelector('.weight-saved');
+    if(!input) return;
+
+    const key = buildExerciseKey(card, index);
+    input.dataset.weightKey = key;
+
+    if(stored[key] !== undefined && stored[key] !== null && stored[key] !== ''){
+      input.value = stored[key];
+    }
+
+    input.addEventListener('input', ()=>{
+      const map = loadTrainingWeightsMap();
+      if(input.value === ''){
+        delete map[key];
+      }else{
+        map[key] = input.value;
+      }
+      saveTrainingWeightsMap(map);
+
+      if(saved){
+        saved.classList.add('show');
+        clearTimeout(saved._timer);
+        saved._timer = setTimeout(()=>saved.classList.remove('show'), 900);
+      }
+    });
+  });
+}
+
+function clearTrainingWeights(){
+  if(!confirm('Удалить сохранённые рабочие веса у всех упражнений?')) return;
+  localStorage.removeItem(TRAINING_WEIGHT_STORAGE_KEY);
+  document.querySelectorAll('#train .weight-input').forEach(i=>i.value='');
+  document.querySelectorAll('#train .weight-saved').forEach(s=>s.classList.remove('show'));
+}
+
+async function exportTrainingWeights(){
+  const cards = document.querySelectorAll('#train .ex-card');
+  const lines = [];
+  let currentDay = '';
+
+  cards.forEach((card, index)=>{
+    const dayPanel = card.closest('.day-panel');
+    const dayTitle = dayPanel ? dayPanel.querySelector('.section-title') : null;
+    const day = dayTitle ? dayTitle.textContent.trim() : 'Тренировка';
+
+    if(day !== currentDay){
+      if(lines.length) lines.push('');
+      lines.push(day);
+      currentDay = day;
+    }
+
+    const name = card.querySelector('.ex-n')?.textContent.trim() || ('Упражнение '+(index+1));
+    const sets = card.querySelector('.ex-s')?.textContent.trim() || '';
+    const weight = card.querySelector('.weight-input')?.value || '—';
+    lines.push('• ' + name + ' — ' + sets + ' — ' + weight + ' кг');
+  });
+
+  const text = lines.join('\n');
+
+  try{
+    await navigator.clipboard.writeText(text);
+    alert('Тренировочные веса скопированы в буфер обмена.');
+  }catch(e){
+    prompt('Скопируй текст вручную:', text);
+  }
+}
+
+function refreshThemeUI(){
+  const button = document.getElementById('themeToggle');
+  const dark = document.documentElement.dataset.theme === 'dark';
+  if(button){
+    button.textContent = dark ? '☀' : '☾';
+    button.setAttribute('aria-label', dark ? 'Включить светлую тему' : 'Включить тёмную тему');
+    button.setAttribute('aria-pressed', String(dark));
+  }
+  const themeMeta = document.querySelector('meta[name="theme-color"]');
+  if(themeMeta) themeMeta.content = dark ? '#0b1020' : '#f5f7fb';
+}
+
+function toggleTheme(){
+  const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+  document.documentElement.dataset.theme = next;
+  try{ localStorage.setItem(THEME_STORAGE_KEY, next); }catch(e){}
+  refreshThemeUI();
+}
+
+function initTheme(){
+  let saved = null;
+  try{ saved = localStorage.getItem(THEME_STORAGE_KEY); }catch(e){}
+  let systemDark = false;
+  try{ systemDark = Boolean(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches); }catch(e){}
+  document.documentElement.dataset.theme = saved === 'dark' || saved === 'light' ? saved : (systemDark ? 'dark' : 'light');
+  refreshThemeUI();
+}
+
+function splitHealthSections(){
+  const health = document.getElementById('health');
+  const supplements = document.getElementById('supplementsContent');
+  const analyses = document.getElementById('analysesContent');
+  if(!health || !supplements || !analyses) return;
+
+  const titles = [...health.querySelectorAll(':scope > .section-title')];
+  const supplementsTitle = titles.find(el=>el.textContent.trim() === 'БАДы');
+  const nextAfterSupplements = supplementsTitle?.nextElementSibling;
+  if(supplementsTitle){
+    let node = supplementsTitle;
+    while(node){
+      const next = node.nextElementSibling;
+      if(node !== supplementsTitle && node.classList.contains('section-title')) break;
+      supplements.appendChild(node);
+      node = next;
+    }
+  }
+
+  const analysisTitle = [...health.querySelectorAll(':scope > .section-title')].find(el=>el.textContent.trim() === 'Что сдать / проверить');
+  if(analysisTitle){
+    let node = analysisTitle;
+    while(node){
+      const next = node.nextElementSibling;
+      analyses.appendChild(node);
+      node = next;
+    }
+  }
+}
+
+const editableSectionLabels = {
+  food:'Питание', cardio:'Кардио', foods:'Продукты',
+  supplements:'БАДы', analyses:'Анализы', health:'Личные записи'
+};
+const editableDefaults = {};
+let contentEditingEnabled = false;
+
+function readSavedSections(){
+  try{ return JSON.parse(localStorage.getItem(SECTIONS_STORAGE_KEY) || '{}'); }
+  catch(e){ return {}; }
+}
+
+function getEditableSurface(key){
+  return document.querySelector('.editable-surface[data-section-key="'+key+'"]');
+}
+
+function prepareEditableSections(){
+  const directPanels = ['food','cardio','foods','health'];
+  directPanels.forEach(key=>{
+    const panel = document.getElementById(key);
+    if(!panel || getEditableSurface(key)) return;
+    const wrapper = document.createElement('div');
+    wrapper.className = 'editable-surface'; wrapper.dataset.sectionKey = key;
+    const controls = panel.querySelector(':scope > .control-grid');
+    [...panel.childNodes].forEach(node=>{
+      if(node !== controls) wrapper.appendChild(node);
+    });
+    panel.insertBefore(wrapper, controls || null);
+  });
+
+  [['supplements','supplementsContent'],['analyses','analysesContent']].forEach(([key,id])=>{
+    const node = document.getElementById(id);
+    if(node){ node.classList.add('editable-surface'); node.dataset.sectionKey = key; }
+  });
+
+  const saved = readSavedSections();
+  Object.keys(editableSectionLabels).forEach(key=>{
+    const surface = getEditableSurface(key);
+    if(!surface) return;
+    editableDefaults[key] = surface.innerHTML;
+    if(typeof saved[key] === 'string') surface.innerHTML = saved[key];
+    surface.addEventListener('paste', event=>{
+      if(!contentEditingEnabled) return;
+      event.preventDefault();
+      const plain = event.clipboardData?.getData('text/plain') || '';
+      document.execCommand('insertText', false, plain);
+    });
+  });
+}
+
+function setDataStatus(message, isError=false){
+  const el = document.getElementById('dataStatus');
+  if(!el) return;
+  el.textContent = message;
+  el.classList.toggle('error', isError);
+  el.classList.toggle('ok', !isError && Boolean(message));
+}
+
+function toggleContentEditing(force){
+  contentEditingEnabled = typeof force === 'boolean' ? force : !contentEditingEnabled;
+  document.querySelectorAll('.editable-surface').forEach(surface=>{
+    surface.contentEditable = contentEditingEnabled ? 'true' : 'false';
+    surface.classList.toggle('is-editing', contentEditingEnabled);
+  });
+  const button = document.getElementById('editModeButton');
+  if(button) button.textContent = contentEditingEnabled ? 'Завершить редактирование' : 'Включить редактирование';
+  document.getElementById('editBanner')?.classList.toggle('show', contentEditingEnabled);
+  setDataStatus(contentEditingEnabled ? 'Редактирование включено: откройте нужную вкладку.' : 'Редактирование выключено.');
+}
+
+function saveAllSections(showMessage=true){
+  const state = readSavedSections();
+  document.querySelectorAll('.editable-surface[data-section-key]').forEach(surface=>{
+    state[surface.dataset.sectionKey] = surface.innerHTML;
+  });
+  localStorage.setItem(SECTIONS_STORAGE_KEY, JSON.stringify(state));
+  if(contentEditingEnabled) toggleContentEditing(false);
+  if(showMessage) setDataStatus('Все изменения сохранены на этом устройстве.');
+  return state;
+}
+
+function isImportedHeading(line){
+  return /^(#{1,4}\s*)/.test(line) || /^(день|при[её]м|завтрак|обед|ужин|перекус|до тренировки|после тренировки|утро|вечер|ежедневно|анализы|бады|добавки|протокол)/i.test(line) || /^\d{1,2}[:.]\d{2}/.test(line) || /:$/.test(line);
+}
+
+function renderSectionText(raw, key){
+  const fragment = document.createDocumentFragment();
+  const lines = String(raw || '').replace(/\r/g,'').replace(/\*\*/g,'').split('\n').map(v=>v.trim()).filter(Boolean);
+  lines.forEach(line=>{
+    const clean = line.replace(/^#{1,4}\s*/,'').replace(/^[-•]\s*/,'').replace(/^\d+[.)]\s*/, '').trim();
+    if(!clean) return;
+    if(isImportedHeading(line)){
+      const title = document.createElement('div'); title.className = 'section-title'; title.textContent = clean.replace(/:$/,''); fragment.appendChild(title); return;
+    }
+    const divider = clean.match(/^(.*?)\s+(?:—|–|\|)\s+(.+)$/) || clean.match(/^([^:]{2,50}):\s*(.+)$/);
+    if(key === 'food' && divider){
+      const card = document.createElement('div'); card.className = 'food-row';
+      const name = document.createElement('span'); name.textContent = divider[1].trim();
+      const amount = document.createElement('span'); amount.className = 'food-amt'; amount.textContent = divider[2].trim();
+      card.append(name,amount); fragment.appendChild(card);
+    }else{
+      const card = document.createElement('div'); card.className = key === 'supplements' ? 'protocol-card' : 'rule-card';
+      if(divider){
+        const strong = document.createElement('b'); strong.textContent = divider[1].trim()+' — ';
+        card.append(strong, document.createTextNode(divider[2].trim()));
+      }else card.textContent = clean;
+      fragment.appendChild(card);
+    }
+  });
+  return {fragment,count:lines.length};
+}
+
+function importSectionData(){
+  const key = document.getElementById('dataImportTarget')?.value;
+  const raw = document.getElementById('dataImportText')?.value || '';
+  const surface = getEditableSurface(key);
+  if(!surface || !raw.trim()){ setDataStatus('Выберите раздел и вставьте информацию.', true); return; }
+  const rendered = renderSectionText(raw,key);
+  surface.innerHTML = ''; surface.appendChild(rendered.fragment);
+  saveAllSections(false);
+  setDataStatus('Раздел «'+editableSectionLabels[key]+'» обновлён и сохранён: '+rendered.count+' строк.');
+  const tab = document.getElementById('tab-'+key); if(tab) tab.checked = true;
+}
+
+function restoreSelectedSection(){
+  const key = document.getElementById('dataImportTarget')?.value;
+  const surface = getEditableSurface(key);
+  if(!surface || !(key in editableDefaults)) return;
+  if(!confirm('Вернуть исходное содержимое раздела «'+editableSectionLabels[key]+'»?')) return;
+  surface.innerHTML = editableDefaults[key];
+  const state = readSavedSections(); delete state[key];
+  localStorage.setItem(SECTIONS_STORAGE_KEY, JSON.stringify(state));
+  setDataStatus('Исходное содержимое раздела восстановлено.');
+}
+
+function buildFitknowBackup(){
+  return {
+    format:BACKUP_FORMAT, exportedAt:new Date().toISOString(),
+    sections:saveAllSections(false),
+    trainingProgram:TRAINING_PROGRAM,
+    trainingWeights:loadTrainingWeightsMap(),
+    checks:(()=>{ try{return JSON.parse(localStorage.getItem(CHECKS_STORAGE_KEY)||'{}')}catch(e){return {}} })(),
+    theme:document.documentElement.dataset.theme || 'light'
+  };
+}
+
+function downloadJson(data, filename){
+  const blob = new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const url = URL.createObjectURL(blob); const link = document.createElement('a');
+  link.href=url; link.download=filename; document.body.appendChild(link); link.click(); link.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+
+function exportFitknowBackup(){
+  const date = new Date().toISOString().slice(0,10);
+  downloadJson(buildFitknowBackup(),'FITKNOW_backup_'+date+'.json');
+  setDataStatus('Резервная копия скачана.');
+}
+
+function restoreFitknowBackup(data){
+  if(!data || data.format !== BACKUP_FORMAT || typeof data.sections !== 'object'){
+    setDataStatus('Это не резервная копия FITKNOW.', true); return;
+  }
+  if(!confirm('Восстановить данные из копии? Текущие изменения будут заменены.')) return;
+  localStorage.setItem(SECTIONS_STORAGE_KEY, JSON.stringify(data.sections || {}));
+  if(Array.isArray(data.trainingProgram)) localStorage.setItem(CUSTOM_PROGRAM_STORAGE_KEY, JSON.stringify(data.trainingProgram));
+  if(data.trainingWeights) localStorage.setItem(TRAINING_WEIGHT_STORAGE_KEY, JSON.stringify(data.trainingWeights));
+  if(data.checks) localStorage.setItem(CHECKS_STORAGE_KEY, JSON.stringify(data.checks));
+  if(data.theme) localStorage.setItem(THEME_STORAGE_KEY, data.theme);
+  location.reload();
+}
+
+function initDataFiles(){
+  const sectionFile = document.getElementById('dataImportFile');
+  sectionFile?.addEventListener('change', async()=>{
+    const file = sectionFile.files?.[0]; if(!file) return;
+    try{
+      const text = await file.text();
+      if(file.name.toLowerCase().endsWith('.json')){
+        try{ const data=JSON.parse(text); if(data?.format===BACKUP_FORMAT){ restoreFitknowBackup(data); return; } }catch(e){}
+      }
+      const area=document.getElementById('dataImportText'); if(area) area.value=text;
+      setDataStatus('Файл «'+file.name+'» прочитан. Выберите раздел и нажмите «Загрузить».');
+    }catch(e){ setDataStatus('Не удалось прочитать файл.', true); }
+  });
+  document.getElementById('backupImportFile')?.addEventListener('change', async event=>{
+    const file=event.target.files?.[0]; if(!file) return;
+    try{ restoreFitknowBackup(JSON.parse(await file.text())); }
+    catch(e){ setDataStatus('Файл резервной копии повреждён или имеет неверный формат.', true); }
+  });
+}
+
+function initPersistentChecks(){
+  let state = {};
+  try{ state = JSON.parse(localStorage.getItem(CHECKS_STORAGE_KEY) || '{}'); }catch(e){}
+  document.querySelectorAll('[data-persist-check]').forEach(input=>{
+    const key = input.dataset.persistCheck;
+    input.checked = Boolean(state[key]);
+    input.closest('.check-item')?.classList.toggle('checked', input.checked);
+    input.addEventListener('change', ()=>{
+      state[key] = input.checked;
+      localStorage.setItem(CHECKS_STORAGE_KEY, JSON.stringify(state));
+      input.closest('.check-item')?.classList.toggle('checked', input.checked);
+    });
+  });
+}
+
+initTheme();
+splitHealthSections();
+prepareEditableSections();
+initPersistentChecks();
+initProgramFileInput();
+initDataFiles();
+renderTrainingProgram();
+initTrainingWeights();
+
+function initFitknowIllustrations(){
+  const cards = [
+    ['food','food','Питание','Твой план на тарелке','Всё нужное для питания — перед глазами.'],
+    ['train','train','Тренировки','Сильнее, шаг за шагом','Программа и рабочие веса — всегда под рукой.'],
+    ['cardio','cardio','Движение','В своём ритме','Открой план и выбери свой темп.'],
+    ['foods','food','Продукты','Просто выбрать','Продукты и заметки о питании в одном месте.'],
+    ['supplements','supplements','Твой список','Ничего не забыть','Добавки и расписание из твоего плана.'],
+    ['analyses','analyses','Самоконтроль','Внимание к себе','Список исследований и личные заметки.'],
+    ['health','analyses','Личные записи','Всё по местам','Сохраняй назначения и записи специалиста.'],
+    ['datahub','data','FITKNOW','Твой план. Твои правила.','Загружай, редактируй и сохраняй.']
+  ];
+  cards.forEach(([id,art,tag,title,description])=>{
+    const panel=document.getElementById(id); if(!panel) return;
+    const banner=document.createElement('div'); banner.className='illustrated-welcome';
+    const sticker=document.createElement('span'); sticker.className='fit-sticker '+art; sticker.setAttribute('aria-hidden','true');
+    const copy=document.createElement('div');
+    const label=document.createElement('span'); label.className='welcome-tag';label.textContent=tag;
+    const heading=document.createElement('h2');heading.textContent=title;
+    const desc=document.createElement('p');desc.textContent=description;
+    copy.append(label,heading,desc);banner.append(sticker,copy);panel.prepend(banner);
+  });
+}
+initFitknowIllustrations();
+
+</script>
+</body>
+</html>
