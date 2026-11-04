@@ -801,6 +801,20 @@ background-size:contain!important;box-shadow:none!important;border-radius:0!impo
 html[data-theme="dark"] .fit-sticker{box-shadow:none!important}
 @media(max-width:420px){.wrap{padding:15px 12px 76px}.hero h1{font-size:37px}.header-logo{width:39px;height:39px;flex-basis:39px}}
 
+
+/* FITKNOW 3D STICKER V4 — approved high-gloss promo sticker collection */
+.neo-sticker-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:15px 0 0}
+.neo-sticker-row .neo-sticker-chip{display:none;align-items:center;gap:4px;border:1px solid var(--glass-border);
+border-radius:16px;background:var(--card);padding:5px 10px 5px 3px;box-shadow:0 0 15px rgba(171,120,255,.1);
+font-size:12px;font-weight:800;color:var(--text)}
+.neo-sticker-row img{width:43px;height:43px;object-fit:contain;filter:drop-shadow(0 0 9px rgba(182,121,255,.3))}
+.neo-stickers-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(93px,1fr));gap:10px;padding:9px 0 22px}
+.neo-sticker-card{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 3px 10px;min-height:108px;
+background:var(--card);border:1px solid var(--glass-border);border-radius:18px}
+.neo-sticker-card img{width:71px;height:71px;object-fit:contain}
+.neo-sticker-card span{font-size:12px;font-weight:750;color:var(--text-dim)}
+#neoStickerPanel{display:none}#neoStickerPanel.visible{display:block}
+
 </style>
 </head>
 <body>
@@ -1586,6 +1600,59 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('./sw.js').catch(function () {});
   });
 }
+
+/* FITKNOW 3D sticker integration. Non-blocking fallback: existing vector stickers
+   remain until the images from the published FITKNOW landing load successfully. */
+const FITKNOW_PROMO_ASSET_BASE='https://gornostaevmarketing.ru/fitknow/assets/stickers/';
+const FITKNOW_PROMO_STICKERS={
+ dumbbell:'Тренировки',shaker:'Шейкер',food:'Питание',clipboard:'Планы',
+ biceps:'Сила',scale:'Вес',flame:'Мотивация',chart:'Прогресс',
+ heart:'Самоконтроль',calendar:'Расписание',goal:'Цель',
+ target:'Фокус',kettlebell:'Нагрузки',trophy:'Достижения'
+};
+function initPromoStickers(){
+ const bannerMap={food:'food',train:'dumbbell',cardio:'chart',foods:'food',
+   supplements:'shaker',analyses:'heart',health:'clipboard',datahub:'calendar'};
+ document.querySelectorAll('.illustrated-welcome .fit-sticker').forEach(sticker=>{
+   const panel=sticker.closest('.panel');
+   const name=bannerMap[panel?.id];
+   if(!name)return;
+   const url=FITKNOW_PROMO_ASSET_BASE+name+'.png';
+   const test=new Image();
+   test.onload=()=>sticker.style.setProperty('background-image','url("'+url+'")','important');
+   test.src=url;
+ });
+ const header=document.querySelector('.hero');
+ if(header && !document.getElementById('neoStickerBar')){
+   const row=document.createElement('div');row.className='neo-sticker-row';row.id='neoStickerBar';
+   [['dumbbell','Тренировки'],['food','Питание'],['chart','Прогресс']].forEach(([name,label])=>{
+     const chip=document.createElement('span');chip.className='neo-sticker-chip';
+     const img=document.createElement('img');img.alt='';img.loading='lazy';
+     img.onload=()=>{chip.style.display='inline-flex';};
+     img.src=FITKNOW_PROMO_ASSET_BASE+name+'.png';
+     const labelEl=document.createElement('span');labelEl.textContent=label;
+     chip.append(img,labelEl);row.append(chip);
+   });
+   header.append(row);
+ }
+ const datahub=document.getElementById('datahub');
+ if(datahub && !document.getElementById('neoStickerPanel')){
+   const section=document.createElement('section');section.id='neoStickerPanel';
+   const label=document.createElement('h2');label.className='section-title';label.textContent='Фирменные стикеры FITKNOW';
+   const grid=document.createElement('div');grid.className='neo-stickers-gallery';
+   Object.entries(FITKNOW_PROMO_STICKERS).forEach(([name,title])=>{
+     const card=document.createElement('div');card.className='neo-sticker-card';
+     const img=document.createElement('img');img.alt='';img.loading='lazy';
+     img.onload=()=>section.classList.add('visible');
+     img.src=FITKNOW_PROMO_ASSET_BASE+name+'.png';
+     const txt=document.createElement('span');txt.textContent=title;
+     card.append(img,txt);grid.append(card);
+   });
+   section.append(label,grid);datahub.append(section);
+ }
+}
+initPromoStickers();
+
 </script>
 </body>
 </html>
