@@ -1617,10 +1617,10 @@ function initPromoStickers(){
    const panel=sticker.closest('.panel');
    const name=bannerMap[panel?.id];
    if(!name)return;
-   const url=FITKNOW_PROMO_ASSET_BASE+name+'.png';
    const test=new Image();
-   test.onload=()=>sticker.style.setProperty('background-image','url("'+url+'")','important');
-   test.src=url;
+   test.onload=()=>sticker.style.setProperty('background-image','url("'+test.src+'")','important');
+   test.onerror=()=>{if(!test.dataset.cdn){test.dataset.cdn='1';test.src=FITKNOW_PROMO_ASSET_BASE+name+'.png';}};
+   test.src='./stickers3d/'+name+'.png';
  });
  const header=document.querySelector('.hero');
  if(header && !document.getElementById('neoStickerBar')){
@@ -1629,7 +1629,8 @@ function initPromoStickers(){
      const chip=document.createElement('span');chip.className='neo-sticker-chip';
      const img=document.createElement('img');img.alt='';img.loading='lazy';
      img.onload=()=>{chip.style.display='inline-flex';};
-     img.src=FITKNOW_PROMO_ASSET_BASE+name+'.png';
+     img.onerror=()=>{if(!img.dataset.cdn){img.dataset.cdn='1';img.src=FITKNOW_PROMO_ASSET_BASE+name+'.png';}else{img.remove();}};
+     img.src='./stickers3d/'+name+'.png';
      const labelEl=document.createElement('span');labelEl.textContent=label;
      chip.append(img,labelEl);row.append(chip);
    });
@@ -1644,7 +1645,8 @@ function initPromoStickers(){
      const card=document.createElement('div');card.className='neo-sticker-card';
      const img=document.createElement('img');img.alt='';img.loading='lazy';
      img.onload=()=>section.classList.add('visible');
-     img.src=FITKNOW_PROMO_ASSET_BASE+name+'.png';
+     img.onerror=()=>{if(!img.dataset.cdn){img.dataset.cdn='1';img.src=FITKNOW_PROMO_ASSET_BASE+name+'.png';}else{img.remove();}};
+     img.src='./stickers3d/'+name+'.png';
      const txt=document.createElement('span');txt.textContent=title;
      card.append(img,txt);grid.append(card);
    });
