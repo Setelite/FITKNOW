@@ -1,7 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-<rect width="512" height="512" rx="112" fill="#101b19"/>
-<circle cx="384" cy="126" r="96" fill="#c8f169" opacity=".14"/>
-<path d="M132 160h53v-30c0-13 11-24 24-24s24 11 24 24v30h46v192h-46v30c0 13-11 24-24 24s-24-11-24-24v-30h-53c-21 0-38-17-38-38V198c0-21 17-38 38-38z" fill="#c8f169"/>
-<path d="M314 160h13v-30c0-13 11-24 24-24s24 11 24 24v30h5c21 0 38 17 38 38v116c0 21-17 38-38 38h-5v30c0 13-11 24-24 24s-24-11-24-24v-30h-13V160z" fill="#c8f169"/>
-<rect x="223" y="234" width="102" height="44" rx="22" fill="#101b19"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop stop-color="#6d5dfc"/><stop offset="1" stop-color="#4988ff"/></linearGradient></defs><rect width="512" height="512" rx="118" fill="url(#g)"/><text x="256" y="354" text-anchor="middle" font-family="-apple-system,Arial,sans-serif" font-weight="900" font-size="287" fill="#fff">F</text></svg>
