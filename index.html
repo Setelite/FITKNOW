@@ -993,6 +993,99 @@ body[data-screen="section"] #minimalSectionTheme{border-color:var(--line)!import
 body[data-screen="section"] .footer-note{font-size:14px!important}
 @media(max-width:400px){.minimal-bottom-nav button{font-size:11px!important}.minimal-dashboard-panel .macro-box{min-height:94px;padding:13px 4px!important}body[data-screen="section"] :is(.rule-card,.meal-card,.ex-card,.import-card,.data-card){padding:14px!important}}
 
+
+/* FITKNOW MOBILE FIX V3 — iOS file inputs, bottom navigation, sheets, bright yellow */
+:root{--brand-gold:#FFD400!important;--brand-gold-strong:#FFD400!important;--brand-gold-soft:#FFF0A6!important}
+.minimal-brand-dot,.minimal-home .brand-kicker,.minimal-eyebrow{color:#FFD400!important}
+.minimal-hero-trail{border-color:rgba(255,212,0,.24)!important}
+.minimal-home-btn:not(.minimal-home-btn-secondary){background:#FFD400!important;border-color:#FFD400!important;color:#101010!important}
+body[data-screen="section"] .action-btn.primary,body[data-screen="section"] .btn.primary,
+body[data-screen="section"] .add-btn{background:#FFD400!important;border-color:#FFD400!important;color:#111!important}
+body[data-screen="section"] :is(.day-btn,.file-picker,.file-label,.btn,.action-btn):focus-visible{outline:3px solid #FFD400!important;outline-offset:2px!important}
+body[data-screen="section"] input[type="checkbox"]{accent-color:#FFD400!important}
+body[data-screen="section"] .rule-card{border-left-color:#FFD400!important}
+body[data-screen="section"] .minimal-hint summary::after{color:#FFD400!important}
+body[data-screen="section"] .file-picker,
+body[data-screen="section"] .file-label{
+  box-sizing:border-box!important;position:relative!important;display:flex!important;align-items:center!important;
+  justify-content:center!important;text-align:center!important;max-width:100%!important;width:100%!important;
+  min-width:0!important;min-height:54px!important;margin:8px 0 4px!important;
+  padding:13px 15px!important;border:1px solid var(--line)!important;
+  border-radius:15px!important;background:var(--card2)!important;color:var(--text)!important;
+  overflow:hidden!important;white-space:normal!important;overflow-wrap:anywhere!important;
+  font:800 16px/1.3 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif!important;
+  cursor:pointer!important
+}
+body[data-screen="section"] .file-picker input[type="file"],
+body[data-screen="section"] .file-label input[type="file"]{
+  position:absolute!important;width:1px!important;height:1px!important;opacity:0!important;
+  clip-path:inset(50%)!important;overflow:hidden!important;padding:0!important;
+  margin:0!important;border:0!important;pointer-events:none!important
+}
+body[data-screen="section"] .file-picker:focus-within,
+body[data-screen="section"] .file-label:focus-within{outline:3px solid #FFD400!important;outline-offset:2px!important}
+body[data-screen="section"] .selected-file{
+  display:block;max-width:100%;font-size:13px;line-height:1.4;overflow-wrap:anywhere;
+  color:var(--text-dim);margin:3px 1px 12px
+}
+body[data-screen="section"] :is(.data-card,.import-card){min-width:0;overflow:visible!important}
+body[data-screen="section"] .data-grid{grid-template-columns:minmax(0,1fr)!important}
+body[data-screen="section"] .data-actions,
+body[data-screen="section"] .import-actions{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:10px!important}
+body[data-screen="section"] .data-actions>*,
+body[data-screen="section"] .import-actions>*{min-width:0!important;width:100%!important;max-width:100%!important;margin:0!important}
+body[data-screen="section"] .data-actions .btn,
+body[data-screen="section"] .import-actions .action-btn{min-width:0!important;width:100%!important}
+body[data-screen="section"] .data-actions .file-picker{margin:0!important}
+body[data-screen="section"] .import-actions .file-label{margin:0!important}
+body[data-screen="section"] .import-textarea{width:100%!important;max-width:100%!important;min-width:0!important}
+.minimal-bottom-nav{
+  grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  gap:0!important;padding:9px 5px calc(8px + env(safe-area-inset-bottom))!important
+}
+.minimal-bottom-nav button{
+  display:flex!important;flex-direction:column!important;justify-content:center!important;
+  align-items:center!important;gap:5px!important;min-width:0!important;
+  width:100%!important;max-width:100%!important;padding:4px 1px!important;
+  margin:0!important;line-height:1.15!important;
+  font-size:clamp(9px,2.65vw,11px)!important;font-weight:750!important;
+  white-space:nowrap!important;overflow:hidden!important;
+}
+.minimal-bottom-nav button>span:last-child{
+  display:block!important;max-width:100%!important;min-width:0!important;
+  white-space:nowrap!important;overflow:hidden!important;text-overflow:clip!important;
+  letter-spacing:-.025em!important
+}
+.minimal-nav-glyph{font-size:22px!important;line-height:24px!important}
+.minimal-bottom-nav button[aria-current="page"] .minimal-nav-glyph{color:#C29E00!important}
+.minimal-bottom-nav button[aria-current="page"]{color:#111!important}
+.minimal-more{
+  box-sizing:border-box!important;z-index:100!important;
+  bottom:calc(73px + env(safe-area-inset-bottom))!important;
+  width:min(calc(100% - 26px),660px)!important;
+  padding:17px 17px calc(17px + env(safe-area-inset-bottom)*0.15)!important;
+  border-radius:24px!important;overflow:hidden!important
+}
+.minimal-more-top{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important;min-height:51px!important;margin-bottom:9px!important}
+.minimal-more-top strong{font-size:22px!important;font-weight:900!important;min-width:0!important}
+#minimalMoreClose{
+  display:grid!important;place-items:center!important;flex:0 0 44px!important;
+  width:44px!important;height:44px!important;min-width:44px!important;min-height:44px!important;
+  padding:0!important;margin:0!important;border:0!important;border-radius:50%!important;
+  background:#F0F0F0!important;color:#171717!important;
+  font:800 23px/1 Arial,sans-serif!important;cursor:pointer!important
+}
+#minimalMoreClose:focus-visible{outline:3px solid #FFD400!important;outline-offset:2px!important}
+.minimal-more>button[data-open-tab]{min-height:53px!important;font-size:18px!important;font-weight:800!important;padding:12px 3px!important}
+.minimal-more>button[data-open-tab] span{color:#A18100!important}
+body[data-screen="section"][data-section-dark="true"] .btn:not(.primary),
+body[data-screen="section"][data-section-dark="true"] .action-btn:not(.primary){color:var(--text)!important}
+@media(max-width:370px){
+ .minimal-bottom-nav button{font-size:9px!important;letter-spacing:-.04em!important}
+ .minimal-nav-glyph{font-size:21px!important}
+ .minimal-more{width:calc(100% - 18px)!important}
+}
+
 </style>
 </head>
 <body>
@@ -1136,7 +1229,7 @@ body[data-screen="section"] .footer-note{font-size:14px!important}
 1. Жим лёжа — 4×10
 2. Сведение рук — 3×12"></textarea>
       <div class="import-actions">
-        <label class="file-label">Выбрать файл<input id="programFileInput" type="file" accept=".txt,.md,.csv,.json,text/plain,text/markdown,application/json"></label>
+        <label class="file-label">Выбрать файл<input id="programFileInput" type="file" accept=".txt,.md,.csv,.json,text/plain,text/markdown,application/json"></label><span class="selected-file" aria-live="polite">Файл не выбран</span>
         <button class="action-btn primary" type="button" onclick="importTrainingProgram()">Импортировать</button>
         <button class="action-btn" type="button" onclick="copyCurrentProgram()">Скопировать текущую</button>
         <button class="action-btn danger" type="button" onclick="restoreDefaultProgram()">Вернуть исходную</button>
@@ -1157,7 +1250,7 @@ body[data-screen="section"] .footer-note{font-size:14px!important}
           <option value="health">Личные записи</option>
         </select>
         <textarea class="import-textarea" id="dataImportText" placeholder="Вставьте информацию сюда…"></textarea>
-        <label class="file-picker">Выбрать файл<input type="file" id="dataImportFile" accept=".txt,.md,.csv,.json,text/plain,text/markdown,text/csv,application/json"></label>
+        <label class="file-picker">Выбрать файл<input type="file" id="dataImportFile" accept=".txt,.md,.csv,.json,text/plain,text/markdown,text/csv,application/json"></label><span class="selected-file" aria-live="polite">Файл не выбран</span>
         <div class="import-status" id="dataStatus" aria-live="polite"></div>
         <div class="data-actions">
           <button class="btn primary" type="button" onclick="importSectionData()">Загрузить в раздел</button>
@@ -1179,7 +1272,7 @@ body[data-screen="section"] .footer-note{font-size:14px!important}
         <p>Скачайте единый файл со всеми разделами, тренировками, рабочими весами и отметками.</p>
         <div class="data-actions">
           <button class="btn primary" type="button" onclick="exportFitknowBackup()">Скачать копию</button>
-          <label class="file-picker">Восстановить копию<input type="file" id="backupImportFile" accept=".json,application/json"></label>
+          <label class="file-picker">Восстановить копию<input type="file" id="backupImportFile" accept=".json,application/json"></label><span class="selected-file" aria-live="polite">Файл не выбран</span>
         </div>
       </div>
 
@@ -2007,6 +2100,19 @@ function initMinimalReadableHelp(){
  });
 }
 initMinimalReadableHelp();
+
+/* Show file names without iOS-native file input chrome or overlap. */
+function initFitknowFileLabels(){
+ document.querySelectorAll('label.file-picker input[type="file"], label.file-label input[type="file"]').forEach(input=>{
+   const label=input.closest('label');
+   const status=label?.nextElementSibling;
+   if(!status||!status.classList.contains('selected-file'))return;
+   input.addEventListener('change',()=>{
+     status.textContent=input.files?.[0]?.name||'Файл не выбран';
+   });
+ });
+}
+initFitknowFileLabels();
 </script>
 </body>
 </html>
