@@ -1483,6 +1483,35 @@ body[data-screen="home"] .minimal-home::after{
  background-blend-mode:normal!important;
 }
 
+
+/* FITKNOW V13 — no photo darkening or overlay */
+body[data-screen="home"] .minimal-home::before{
+ content:none!important;display:none!important
+}
+body[data-screen="home"] .minimal-home::after{
+ content:""!important;display:block!important;
+ position:absolute!important;top:0!important;left:0!important;right:0!important;
+ width:100%!important;height:clamp(405px,118vw,680px)!important;
+ background-image:url("./assets/fitness-couple-approved.webp?v=13")!important;
+ background-color:transparent!important;
+ background-position:center top!important;
+ background-repeat:no-repeat!important;
+ background-size:100% auto!important;
+ background-blend-mode:normal!important;
+ opacity:1!important;
+ filter:none!important;-webkit-filter:none!important;
+ -webkit-mask-image:none!important;mask-image:none!important;
+ mix-blend-mode:normal!important;
+ box-shadow:none!important;
+ pointer-events:none!important;
+ z-index:0!important
+}
+body[data-screen="home"] .minimal-home .hero h1,
+body[data-screen="home"] .minimal-hero-message strong{
+ text-shadow:none!important
+}
+body[data-screen="home"] .minimal-hero-trail{display:none!important}
+
 </style>
 </head>
 <body>
