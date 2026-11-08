@@ -1274,6 +1274,29 @@ body[data-screen="home"] .minimal-more{background:#fff!important;color:#111!impo
  body[data-screen="home"] .minimal-dashboard-panel{padding:14px 10px!important}
 }
 
+
+/* FITKNOW APPROVED COUPLE V7 — extracted directly from chosen reference */
+body[data-screen="home"] .minimal-home::after{
+  background-image:url("./assets/fitness-couple-approved.webp")!important;
+  background-position:center top!important;
+  background-repeat:no-repeat!important;
+  background-size:100% auto!important;
+  top:0!important;left:0!important;right:0!important;
+  width:100%!important;height:clamp(350px,108vw,560px)!important;
+  opacity:1!important;
+}
+body[data-screen="home"] .minimal-home{background:#090a0c!important}
+body[data-screen="home"] .minimal-home .hero,
+body[data-screen="home"] .minimal-hero-message{position:relative!important;z-index:2!important}
+body[data-screen="home"] .minimal-home .hero h1,
+body[data-screen="home"] .minimal-hero-message strong{text-shadow:0 3px 15px #090a0c!important}
+body[data-screen="home"] .minimal-dashboard-panel{position:relative!important;z-index:3!important}
+@media(min-width:600px){
+ body[data-screen="home"] .minimal-home::after{
+   background-size:min(100%,600px) auto!important;background-position:right top!important;
+ }
+}
+
 </style>
 </head>
 <body>
