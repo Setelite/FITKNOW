@@ -1193,6 +1193,87 @@ body[data-screen="home"] .minimal-home-actions{margin-top:21px}
  body[data-screen="home"] .minimal-hero-message{min-height:205px!important}
 }
 
+
+/* FITKNOW REFERENCE HERO V6 — approved black/yellow photo layout */
+html,body{background:#101010!important}
+body[data-screen="home"] .minimal-home{background:#101010!important}
+body[data-screen="home"] .minimal-home::before{display:none!important}
+body[data-screen="home"] .minimal-home::after{
+ background-image:
+ linear-gradient(90deg,#101010 0%,rgba(16,16,16,.75) 28%,rgba(16,16,16,.12) 68%,rgba(16,16,16,0) 100%),
+ linear-gradient(0deg,#101010 0%,rgba(16,16,16,0) 32%),
+ url("./assets/fitness-couple-clean.webp")!important;
+ background-repeat:no-repeat!important;
+ background-position:center,center,center top!important;
+ background-size:cover,cover,cover!important;
+ top:0!important;left:0!important;right:0!important;width:100%!important;
+ height:clamp(320px,95vw,470px)!important;opacity:1!important;
+}
+body[data-screen="home"] .minimal-home .hero{padding-top:26px!important}
+body[data-screen="home"] .hero .sub{
+ color:#eeeeee!important;font-size:16px!important;line-height:1.4!important;
+ max-width:190px!important;position:relative
+}
+body[data-screen="home"] .hero .sub::after{
+ content:"";display:block;width:50px;height:4px;background:#FFD400;
+ border-radius:100px;margin-top:14px
+}
+body[data-screen="home"] .minimal-hero-message{
+ min-height:clamp(220px,68vw,290px)!important;justify-content:center!important;
+ padding:25px 2px 15px!important
+}
+body[data-screen="home"] .minimal-hero-message strong{
+ font-weight:950!important;font-size:clamp(36px,10vw,50px)!important;
+ letter-spacing:-.06em!important;text-shadow:0 3px 14px #101010!important
+}
+body[data-screen="home"] .minimal-hero-message strong::after{
+ content:"";display:block;width:140px;max-width:42%;height:5px;border-radius:90px;
+ margin:13px 0 0 8px;background:#FFD400;transform:rotate(-3deg)
+}
+body[data-screen="home"] .minimal-hero-trail{display:none!important}
+body[data-screen="home"] .minimal-dashboard-panel{
+ background:#fff!important;color:#101010!important;padding:19px 15px 17px!important;
+ border-radius:28px!important;position:relative!important
+}
+body[data-screen="home"] .nutrition-targets-head>span{font-size:24px!important}
+body[data-screen="home"] .macro-box{
+ min-height:108px!important;border-radius:18px!important;
+ padding:15px 5px!important
+}
+body[data-screen="home"] .macro-tag{font-size:12px!important;font-weight:950!important}
+body[data-screen="home"] .macro-input{font-size:clamp(25px,7vw,37px)!important;color:#101010!important}
+body[data-screen="home"] .macro-input-wrap>span{color:#101010!important}
+body[data-screen="home"] .kcal-target-row{
+ display:flex!important;gap:10px!important;padding:17px 14px!important;
+ background:#111!important;border-radius:18px!important
+}
+body[data-screen="home"] #macroCalories{color:#FFD400!important;font-weight:950!important}
+body[data-screen="home"] .calories-edit{color:#fff!important}
+body[data-screen="home"] .minimal-home-btn{
+ border-radius:18px!important;min-height:62px!important;padding:15px 17px!important
+}
+body[data-screen="home"] .minimal-home-btn-secondary{
+ background:#111!important;border-color:#444!important;color:#fff!important
+}
+body[data-screen="home"] .minimal-bottom-nav{
+ background:#0d0d0d!important;border:1px solid #747474!important;
+ box-shadow:0 0 0 1px #111,0 9px 30px rgba(0,0,0,.32)!important
+}
+body[data-screen="home"] .minimal-bottom-nav button{
+ color:#fff!important;border:1px solid #7d7d7d!important;background:#101010!important
+}
+body[data-screen="home"] .minimal-bottom-nav button[aria-current="page"]{
+ background:#FFD400!important;border:2px solid #101010!important
+}
+body[data-screen="home"] .minimal-bottom-nav button .minimal-nav-icon{stroke:#fff!important}
+body[data-screen="home"] .minimal-bottom-nav button[aria-current="page"] .minimal-nav-icon{stroke:#111!important}
+body[data-screen="home"] .minimal-more{background:#fff!important;color:#111!important}
+@media(max-width:380px){
+ body[data-screen="home"] .minimal-hero-message{min-height:225px!important}
+ body[data-screen="home"] .minimal-home::after{height:350px!important}
+ body[data-screen="home"] .minimal-dashboard-panel{padding:14px 10px!important}
+}
+
 </style>
 </head>
 <body>
