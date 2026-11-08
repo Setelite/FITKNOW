@@ -1320,6 +1320,39 @@ body[data-screen="home"] .minimal-bottom-nav button[aria-current="page"] .minima
 body[data-screen="section"] .minimal-bottom-nav button[aria-current="page"] .minimal-nav-icon{
  stroke:#111111!important;
 }
+
+/* FITKNOW V9 — unobscured hero photo, no darkening layers */
+body[data-screen="home"] .minimal-home::after{
+ content:""!important;
+ position:absolute!important;
+ z-index:0!important;
+ pointer-events:none!important;
+ top:0!important;left:0!important;right:0!important;
+ width:100%!important;
+ height:clamp(350px,108vw,560px)!important;
+ background:#090a0c url("./assets/fitness-couple-approved.webp") center top / 100% auto no-repeat!important;
+ background-blend-mode:normal!important;
+ opacity:1!important;
+ filter:none!important;
+ -webkit-filter:none!important;
+ mix-blend-mode:normal!important;
+ mask-image:none!important;
+ -webkit-mask-image:none!important;
+}
+body[data-screen="home"] .minimal-home::before{display:none!important}
+body[data-screen="home"] .minimal-home .hero h1,
+body[data-screen="home"] .minimal-hero-message strong{
+ text-shadow:0 2px 8px rgba(0,0,0,.3)!important;
+}
+body[data-screen="home"] .minimal-home .hero,
+body[data-screen="home"] .minimal-hero-message{z-index:2!important}
+@media(min-width:600px){
+ body[data-screen="home"] .minimal-home::after{
+  background-position:right top!important;
+  background-size:min(100%,600px) auto!important
+ }
+}
+
 </style>
 </head>
 <body>
