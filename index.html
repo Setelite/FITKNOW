@@ -1434,6 +1434,55 @@ body[data-screen="section"] .minimal-bottom-nav button[aria-current="page"] .min
  }
 }
 
+
+/* FITKNOW V12 — high-contrast tabbar repair, one explicit theme */
+.minimal-bottom-nav,
+body[data-screen="home"] .minimal-bottom-nav,
+body[data-screen="section"] .minimal-bottom-nav{
+ background-color:#fff!important;
+ background-image:none!important;
+ border:2px solid #121212!important;
+ box-shadow:0 6px 25px rgba(0,0,0,.21)!important;
+ border-radius:26px!important;
+}
+.minimal-bottom-nav button,
+body[data-screen="home"] .minimal-bottom-nav button,
+body[data-screen="section"] .minimal-bottom-nav button{
+ color:#111!important;background:#fff!important;
+ border:1px solid transparent!important;
+ border-radius:19px!important;
+ opacity:1!important;
+}
+.minimal-bottom-nav button svg.minimal-nav-icon,
+body[data-screen="home"] .minimal-bottom-nav button svg.minimal-nav-icon,
+body[data-screen="section"] .minimal-bottom-nav button svg.minimal-nav-icon,
+.minimal-bottom-nav button:not([aria-current="page"]) svg.minimal-nav-icon{
+ color:#111!important;
+ stroke:#111!important;
+ opacity:1!important;
+ visibility:visible!important;
+ filter:none!important;
+ -webkit-filter:none!important;
+ width:33px!important;height:33px!important;
+ fill:none!important;
+}
+.minimal-bottom-nav button[aria-current="page"],
+body[data-screen="home"] .minimal-bottom-nav button[aria-current="page"],
+body[data-screen="section"] .minimal-bottom-nav button[aria-current="page"]{
+ background:#FFD400!important;
+ border:2px solid #111!important;
+}
+.minimal-bottom-nav button[aria-current="page"] svg.minimal-nav-icon,
+body[data-screen="home"] .minimal-bottom-nav button[aria-current="page"] svg.minimal-nav-icon,
+body[data-screen="section"] .minimal-bottom-nav button[aria-current="page"] svg.minimal-nav-icon{
+ stroke:#111!important;color:#111!important;opacity:1!important;
+}
+body[data-screen="home"] .minimal-home::after{
+ opacity:1!important;
+ filter:none!important;-webkit-filter:none!important;
+ background-blend-mode:normal!important;
+}
+
 </style>
 </head>
 <body>
