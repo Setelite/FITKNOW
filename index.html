@@ -1576,6 +1576,60 @@ body[data-screen="home"] .minimal-dashboard-panel{
  body[data-screen="home"] .minimal-hero-message{min-height:215px!important}
 }
 
+
+/* FITKNOW V16 — full-height athletes, no crop or dimming */
+body[data-screen="home"] .minimal-home{
+  background:#090a0c!important;
+  padding-top:0!important;
+}
+body[data-screen="home"] .minimal-home::before{display:none!important;content:none!important}
+body[data-screen="home"] .minimal-home::after{
+  content:""!important;
+  display:block!important;
+  position:absolute!important;
+  top:0!important;left:0!important;right:0!important;
+  width:100%!important;
+  height:clamp(520px,130vw,590px)!important;
+  background-image:url("./assets/fitness-couple-fullbody-v16.webp?v=16")!important;
+  background-color:transparent!important;
+  background-position:center top!important;
+  background-repeat:no-repeat!important;
+  background-size:auto 100%!important;
+  opacity:1!important;filter:none!important;-webkit-filter:none!important;
+  background-blend-mode:normal!important;mix-blend-mode:normal!important;
+  mask:none!important;-webkit-mask:none!important;
+  box-shadow:none!important;
+  z-index:0!important;pointer-events:none!important;
+}
+body[data-screen="home"] .minimal-home>.hero{
+  padding-top:15px!important;
+  padding-bottom:0!important;
+  margin:0!important;
+  position:relative!important;z-index:2!important
+}
+body[data-screen="home"] .minimal-hero-message{
+  min-height:clamp(390px,100vw,465px)!important;
+  padding:10px 2px 0!important;
+  margin:0!important;
+  justify-content:center!important;
+  position:relative!important;z-index:2!important;
+}
+body[data-screen="home"] .minimal-dashboard-panel{
+  margin-top:0!important;
+  position:relative!important;z-index:3!important;
+}
+body[data-screen="home"] .minimal-home .hero h1,
+body[data-screen="home"] .minimal-hero-message strong{
+  text-shadow:0 1px 4px rgba(0,0,0,.23)!important;
+}
+@media(min-width:600px){
+ body[data-screen="home"] .minimal-home::after{
+   background-position:center top!important;
+   background-size:auto 100%!important;
+ }
+ body[data-screen="home"] .minimal-hero-message{min-height:465px!important}
+}
+
 </style>
 </head>
 <body>
