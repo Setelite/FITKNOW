@@ -1,5 +1,5 @@
-const CACHE_NAME = 'fitknow-minimal-2026-v4-icon-tabs';
-const APP_SHELL = ['./', './index.html', './manifest.webmanifest', './icon.svg', './stickers/dumbbell.svg', './stickers/apple.svg', './stickers/chart.svg', './stickers/heart.svg', './stickers/clipboard.svg', './stickers/flame.svg', './stickers/water.svg', './stickers/check.svg'];
+const CACHE_NAME = 'fitknow-minimal-2026-v5-immersive';
+const APP_SHELL = ['./', './index.html', './manifest.webmanifest', './icon.svg', './assets/fitness-couple.webp', './stickers/dumbbell.svg', './stickers/apple.svg', './stickers/chart.svg', './stickers/heart.svg', './stickers/clipboard.svg', './stickers/flame.svg', './stickers/water.svg', './stickers/check.svg'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL)).then(() => self.skipWaiting()));
 });
