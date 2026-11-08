@@ -1,13 +1,13 @@
 {
   "name": "FITKNOW — твой фитнес-план",
   "short_name": "FITKNOW",
-  "description": "Личный фитнес-план: тренировки, питание, заметки и сохранение данных",
+  "description": "FITKNOW — минималистичный фитнес-органайзер: тренировки, питание, данные.",
   "lang": "ru",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#0b0b10",
-  "theme_color": "#0b0b10",
+  "background_color": "#101112",
+  "theme_color": "#101112",
   "icons": [
     {
       "src": "./icon.svg",
