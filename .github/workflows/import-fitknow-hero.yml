@@ -1,4 +1,4 @@
-name: Import FITKNOW hero photo
+name: Import FITKNOW full-body hero
 on:
   workflow_dispatch:
   push:
@@ -11,20 +11,41 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Download clean hero photograph
+      - name: Download generated full-body athlete couple
         env:
-          PHOTO_URL: "https://cdn.openart.ai/openart-uploads/production/attachment-transfers/464bee9db20dd9b179adb65c2b0c4a0a1bb7d15ab79e83132d3a613c772f1cbd.webp"
+          PHOTO_URL: "https://cdn.openart.ai/openart-uploads/production/attachment-transfers/6af298247a28a76f07499d3b18150a58c0126c34633e39d1f49498284240828c.webp"
         run: |
           mkdir -p assets
-          curl --fail --location --retry 3 --max-time 60 "$PHOTO_URL" -o assets/fitness-couple-hero-v14.webp
-          test "$(wc -c < assets/fitness-couple-hero-v14.webp)" -gt 15000
-          file assets/fitness-couple-hero-v14.webp
-      - name: Store image in repository
+          curl --fail --location --retry 3 --max-time 90 "$PHOTO_URL" -o /tmp/fitknow-pair-source.webp
+          test "$(wc -c < /tmp/fitknow-pair-source.webp)" -gt 20000
+          python -m pip install --quiet Pillow
+          python - <<'PY'
+          from PIL import Image
+          import math
+          image=Image.open('/tmp/fitknow-pair-source.webp').convert('RGB')
+          assert image.width >= 800 and image.height >= 800, image.size
+          pixels=image.load()
+          for y in range(image.height):
+              start=414 if 370 <= y <= 710 else (390 if y < 370 else 375)
+              for x in range(min(image.width, start+55)):
+                  fraction=max(0.0,min(1.0,(x-start)/55))
+                  if fraction < 1.0:
+                      r,g,b=pixels[x,y]
+                      pixels[x,y]=(round(r*fraction),round(g*fraction),round(b*fraction))
+          # Remove iPhone status bar graphics from source artwork.
+          for y in range(min(82,image.height)):
+              for x in range(823,image.width):
+                  pixels[x,y]=(0,0,0)
+          image.save('assets/fitness-couple-fullbody-v16.webp','WEBP',quality=92,method=6)
+          print('Image dimensions:',image.size)
+          PY
+          test "$(wc -c < assets/fitness-couple-fullbody-v16.webp)" -gt 40000
+      - name: Commit clean photo asset
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/fitness-couple-hero-v14.webp
+          git add assets/fitness-couple-fullbody-v16.webp
           if ! git diff --cached --quiet; then
-            git commit -m "Store clean FITKNOW hero photograph locally"
+            git commit -m "Add full-body athlete couple background for FITKNOW"
             git push
           fi
