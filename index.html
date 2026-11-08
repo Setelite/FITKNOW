@@ -1086,6 +1086,64 @@ body[data-screen="section"][data-section-dark="true"] .action-btn:not(.primary){
  .minimal-more{width:calc(100% - 18px)!important}
 }
 
+
+/* FITKNOW CENTERED MACROS & ICON BAR V4 */
+.minimal-dashboard-panel .macro-box{
+ display:flex!important;flex-direction:column!important;align-items:center!important;
+ justify-content:center!important;gap:10px!important;text-align:center!important
+}
+.minimal-dashboard-panel .macro-tag{display:block!important;text-align:center!important;width:100%!important}
+.minimal-dashboard-panel .macro-input-wrap{
+ display:flex!important;align-items:baseline!important;justify-content:center!important;
+ width:100%!important;min-width:0!important;gap:3px!important;text-align:center!important
+}
+.minimal-dashboard-panel .macro-input{
+ flex:0 1 78px!important;width:78px!important;min-width:0!important;max-width:calc(100% - 18px)!important;
+ margin:0!important;padding:2px 0!important;text-align:center!important;
+ font-variant-numeric:tabular-nums!important
+}
+.minimal-dashboard-panel .macro-input-wrap>span{
+ flex:0 0 auto!important;font-size:14px!important;font-weight:750!important
+}
+.minimal-bottom-nav{
+ width:min(calc(100% - 20px),660px)!important;
+ left:50%!important;bottom:calc(8px + env(safe-area-inset-bottom))!important;
+ transform:translateX(-50%)!important;
+ display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;
+ align-items:center!important;gap:5px!important;
+ padding:7px!important;border:1px solid #111!important;border-radius:25px!important;
+ background:#fff!important;box-shadow:0 5px 26px rgba(0,0,0,.19)!important;
+ overflow:hidden!important;box-sizing:border-box!important
+}
+.minimal-bottom-nav button{
+ min-width:0!important;width:100%!important;min-height:58px!important;height:58px!important;
+ display:flex!important;flex-direction:row!important;justify-content:center!important;align-items:center!important;
+ padding:8px 2px!important;margin:0!important;gap:0!important;
+ border:2px solid transparent!important;border-radius:19px!important;
+ background:transparent!important;color:#111!important;cursor:pointer!important;
+ box-sizing:border-box!important;overflow:visible!important
+}
+.minimal-bottom-nav button[aria-current="page"]{
+ background:#FFD400!important;color:#111!important;border-color:#111!important;
+ box-shadow:none!important
+}
+.minimal-bottom-nav button:active{transform:scale(.96)}
+.minimal-bottom-nav button:focus-visible{outline:3px solid #FFD400!important;outline-offset:1px!important}
+.minimal-bottom-nav .minimal-nav-icon{
+ display:block!important;flex:none!important;width:32px!important;height:32px!important;
+ stroke:#111!important;stroke-width:2.15!important;fill:none!important;
+ overflow:visible!important
+}
+.minimal-bottom-nav button[aria-current="page"] .minimal-nav-icon{stroke:#111!important}
+.minimal-more{bottom:calc(88px + env(safe-area-inset-bottom))!important}
+.wrap{padding-bottom:calc(118px + env(safe-area-inset-bottom))!important}
+@media(max-width:380px){
+ .minimal-bottom-nav{gap:2px!important;padding:6px!important;border-radius:22px!important}
+ .minimal-bottom-nav button{min-height:53px!important;height:53px!important;border-radius:16px!important}
+ .minimal-bottom-nav .minimal-nav-icon{width:29px!important;height:29px!important}
+ .minimal-dashboard-panel .macro-input{width:63px!important;flex-basis:63px!important}
+}
+
 </style>
 </head>
 <body>
@@ -1285,13 +1343,12 @@ body[data-screen="section"][data-section-dark="true"] .action-btn:not(.primary){
 
   <p class="footer-note">Значения зависят от состава продуктов</p>
   <nav class="minimal-bottom-nav" aria-label="Основная навигация">
-   <button type="button" data-nav="home" aria-label="Главная"><span class="minimal-nav-glyph">⌂</span><span>Главная</span></button>
-   <button type="button" data-nav="train" aria-label="Тренировки"><span class="minimal-nav-glyph">⌁</span><span>Тренировки</span></button>
-   <button type="button" data-nav="food" aria-label="Питание"><span class="minimal-nav-glyph">◴</span><span>Питание</span></button>
-   <button type="button" data-nav="data" aria-label="Данные"><span class="minimal-nav-glyph">▦</span><span>Данные</span></button>
-   <button type="button" id="minimalMoreToggle" aria-haspopup="true" aria-expanded="false" aria-controls="minimalMore" aria-label="Ещё разделы"><span class="minimal-nav-glyph">☷</span><span>Ещё</span></button>
-  </nav>
-  <div id="minimalMore" class="minimal-more" hidden role="dialog" aria-modal="false" aria-label="Дополнительные разделы">
+   <button type="button" data-nav="home" aria-label="Главная" title="Главная"><svg class="minimal-nav-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7"/><path d="M5 9v12h14V9"/><path d="M9 21v-7h6v7"/></svg></button>
+   <button type="button" data-nav="train" aria-label="Тренировки" title="Тренировки"><svg class="minimal-nav-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 8v8m4-11v14m12-14v14m4-11v8M6 12h12"/></svg></button>
+   <button type="button" data-nav="food" aria-label="Питание" title="Питание"><svg class="minimal-nav-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h18a9 9 0 0 1-18 0Z"/><path d="M2 12h20M8 7V4m4 3V3m4 4V4"/></svg></button>
+   <button type="button" data-nav="data" aria-label="Данные" title="Данные"><svg class="minimal-nav-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></button>
+   <button type="button" id="minimalMoreToggle" aria-haspopup="true" aria-expanded="false" aria-controls="minimalMore" aria-label="Ещё разделы" title="Ещё разделы"><svg class="minimal-nav-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+  </nav> <div id="minimalMore" class="minimal-more" hidden role="dialog" aria-modal="false" aria-label="Дополнительные разделы">
    <div class="minimal-more-top"><strong>Все разделы</strong><button type="button" id="minimalMoreClose" aria-label="Закрыть">✕</button></div>
    <button type="button" data-open-tab="cardio">Кардио <span>↗</span></button>
    <button type="button" data-open-tab="foods">Продукты <span>↗</span></button>
