@@ -918,6 +918,81 @@ body[data-screen="home"] .wrap>.panel{display:none!important}
 @media(min-width:690px){.minimal-home{border-radius:0 0 28px 28px}}
 @media(prefers-reduced-motion:reduce){.minimal-home *,.minimal-bottom-nav *{transition:none!important}}
 
+
+/* FITKNOW MINIMAL REFINEMENT V2 — black / white / dark gold only */
+:root{--brand-gold:#C79B23;--brand-gold-strong:#B48813;--brand-gold-soft:#F4E8C4}
+body[data-screen="home"] .minimal-home{background:#101010!important}
+.minimal-brand-dot,.minimal-home .brand-kicker,.minimal-eyebrow{color:var(--brand-gold)!important}
+.minimal-home .hero h1{font-size:clamp(40px,9vw,52px)!important;line-height:1!important}
+.minimal-home .brand-kicker{display:none!important}
+.minimal-home .hero .sub{font-size:16px!important;line-height:1.4!important;max-width:295px}
+.minimal-hero-message{min-height:155px;padding:15px 2px 13px}
+.minimal-hero-message strong{font-size:clamp(36px,9vw,48px)!important}
+.minimal-hero-trail{border-color:rgba(199,155,35,.25)}
+.minimal-dashboard-panel{border-radius:28px!important;box-shadow:none!important}
+.minimal-dashboard-panel .nutrition-targets-head>span{font-size:21px!important}
+.minimal-dashboard-panel .nutrition-targets-head small{display:none}
+.minimal-dashboard-panel .macros{gap:7px!important;margin:14px 0!important}
+.minimal-dashboard-panel .macro-box{background:#F5F5F4!important;border:0!important;border-radius:16px!important;min-height:105px;justify-content:space-between}
+.minimal-dashboard-panel .macro-tag{font-size:12px!important;letter-spacing:.015em!important;color:#555!important}
+.minimal-dashboard-panel .macro-input{font-size:clamp(23px,6vw,34px)!important;font-family:inherit!important;font-weight:900!important;color:#111!important}
+.minimal-dashboard-panel .macro-input-wrap{font-size:15px!important;color:#111!important}
+.minimal-dashboard-panel .kcal-target-row{background:#111!important;color:#fff!important;padding:18px 16px!important}
+.minimal-dashboard-panel #macroCalories{font-size:30px!important}
+.minimal-dashboard-panel .kcal-label{font-size:19px!important}
+.minimal-dashboard-panel .kcal-label small{display:none}
+.minimal-dashboard-panel .nutrition-target-actions{font-size:13px;min-height:28px}
+.minimal-home-btn{border-radius:18px!important;min-height:62px;font-size:17px!important;font-weight:850!important}
+.minimal-home-btn:not(.minimal-home-btn-secondary){background:var(--brand-gold)!important;border-color:var(--brand-gold)!important;color:#111!important}
+.minimal-home-btn-secondary{border:1px solid #535353!important;background:#151515!important;color:#fff!important}
+.minimal-bottom-nav{background:#fff!important;border-color:#eee!important}
+.minimal-bottom-nav button{font-family:inherit!important;font-size:12px!important;font-weight:750!important;gap:5px!important}
+.minimal-bottom-nav button[aria-current="page"]{color:#111!important}
+.minimal-bottom-nav button[aria-current="page"] .minimal-nav-glyph{color:var(--brand-gold-strong)!important}
+.minimal-nav-glyph{font-size:26px!important}
+body[data-screen="section"]{--bg:#F6F6F5;--bg2:#FFF;--card:#FFF;--card2:#F4F4F3;--line:#E8E8E7;--lime:#1A1A1A;--lime-dim:#545454;--orange:#9B7414;--blue:#333;--text:#161616;--text-dim:#646464;--glass:#FFF;--glass-strong:#FFF;--glass-border:#E8E8E7;--glass-shadow:none;--shadow:none;--accent:var(--brand-gold);background:#F6F6F5!important;color:#161616!important}
+body[data-screen="section"][data-section-dark="true"]{--bg:#101010;--bg2:#161616;--card:#1C1C1C;--card2:#292929;--line:#363636;--lime:#F2F2F2;--lime-dim:#D4D4D4;--orange:#C79B23;--blue:#EEE;--text:#FFF;--text-dim:#BBB;--glass:#1C1C1C;--glass-strong:#292929;--glass-border:#363636;--glass-shadow:none;--shadow:none;--accent:var(--brand-gold);background:#101010!important;color:#FFF!important}
+body[data-screen="section"] .minimal-section-heading{padding-top:25px}
+body[data-screen="section"] .minimal-section-heading span{display:none}
+body[data-screen="section"] .minimal-section-heading h2{font-size:clamp(33px,8vw,44px)!important;letter-spacing:-.055em!important}
+body[data-screen="section"] .panel{font-size:18px!important;line-height:1.55!important}
+body[data-screen="section"] .section-title{font-size:16px!important;letter-spacing:0!important;text-transform:none!important;margin:24px 0 12px!important}
+body[data-screen="section"] .illustrated-welcome{padding:17px!important}
+body[data-screen="section"] .illustrated-welcome h2{font-size:24px!important;line-height:1.18!important;color:var(--text)!important}
+body[data-screen="section"] .illustrated-welcome p{display:none!important}
+body[data-screen="section"] .welcome-tag{display:none!important}
+body[data-screen="section"] :is(.rule-card,.meal-card,.ex-card,.data-card,.import-card,.protocol-card,.prod-card,.check-item,.big-stat,.water-row,.cardio-opt){padding:17px!important;margin-bottom:12px!important;line-height:1.5!important}
+body[data-screen="section"] :is(.food-row,.rule-card,.protocol-row,.check-item,.ex-n,.data-card p,.import-card p,.section-intro){font-size:17px!important;line-height:1.55!important}
+body[data-screen="section"] :is(.meal-name,.ex-n,.protocol-name,.data-card h3,.import-card h2){font-size:20px!important;font-weight:850!important;line-height:1.3!important}
+body[data-screen="section"] :is(.meal-note,.protocol-dose,.weight-label,.prod-card .puse,.section-intro){color:var(--text-dim)!important}
+body[data-screen="section"] :is(button,.btn,.action-btn,.file-label,.file-picker,.training-tool-btn,.day-btn,.data-select){min-height:52px!important;font-size:16px!important;font-weight:800!important}
+body[data-screen="section"] .btn.primary,body[data-screen="section"] .action-btn.primary,body[data-screen="section"] .add-btn{background:#181818!important;color:#FFF!important;border:1px solid #181818!important;box-shadow:none!important}
+body[data-screen="section"][data-section-dark="true"] .btn.primary,body[data-screen="section"][data-section-dark="true"] .action-btn.primary{background:var(--brand-gold)!important;color:#111!important;border-color:var(--brand-gold)!important}
+body[data-screen="section"] :is(.day-btn,.tab-btn):hover{border-color:var(--brand-gold)!important}
+body[data-screen="section"] .day-radio:checked~.day-tabs label.day-btn{background:var(--card)!important;color:var(--text)!important}
+body[data-screen="section"] #tday1:checked~.day-tabs label[for="tday1"],
+body[data-screen="section"] #tday2:checked~.day-tabs label[for="tday2"],
+body[data-screen="section"] #tday3:checked~.day-tabs label[for="tday3"],
+body[data-screen="section"] #tday4:checked~.day-tabs label[for="tday4"],
+body[data-screen="section"] #tday5:checked~.day-tabs label[for="tday5"],
+body[data-screen="section"] #tday6:checked~.day-tabs label[for="tday6"],
+body[data-screen="section"] #tday7:checked~.day-tabs label[for="tday7"]{background:var(--brand-gold)!important;color:#111!important;border-color:var(--brand-gold)!important;box-shadow:none!important}
+body[data-screen="section"] :is(.weight-input,.import-textarea,.data-select,.add-row input){font-size:17px!important;border-radius:13px!important}
+body[data-screen="section"] :is(.weight-input,.import-textarea,.data-select,.add-row input):focus{border-color:var(--brand-gold)!important;outline:2px solid var(--brand-gold)!important;outline-offset:1px!important;box-shadow:none!important}
+body[data-screen="section"] input[type="checkbox"]{accent-color:var(--brand-gold)!important}
+body[data-screen="section"] .rule-card{border-left:3px solid var(--brand-gold)!important}
+body[data-screen="section"] .import-status{font-size:15px!important}
+body[data-screen="section"] .minimal-hint{margin:10px 0 17px;border:1px solid var(--line);border-radius:14px;padding:0 13px;background:var(--card);color:var(--text-dim)}
+body[data-screen="section"] .minimal-hint summary{min-height:47px;display:flex;align-items:center;font-size:16px;cursor:pointer;font-weight:750;color:var(--text);list-style:none}
+body[data-screen="section"] .minimal-hint summary::-webkit-details-marker{display:none}
+body[data-screen="section"] .minimal-hint summary::after{content:"＋";margin-left:auto;color:var(--brand-gold-strong);font-size:19px}
+body[data-screen="section"] .minimal-hint[open] summary::after{content:"−"}
+body[data-screen="section"] .minimal-hint p{font-size:16px!important;line-height:1.5!important;margin:0 0 14px!important;color:var(--text-dim)!important}
+body[data-screen="section"] .data-grid{gap:12px}
+body[data-screen="section"] #minimalSectionTheme{border-color:var(--line)!important;background:var(--card)!important;color:var(--text)!important}
+body[data-screen="section"] .footer-note{font-size:14px!important}
+@media(max-width:400px){.minimal-bottom-nav button{font-size:11px!important}.minimal-dashboard-panel .macro-box{min-height:94px;padding:13px 4px!important}body[data-screen="section"] :is(.rule-card,.meal-card,.ex-card,.import-card,.data-card){padding:14px!important}}
+
 </style>
 </head>
 <body>
@@ -928,13 +1003,13 @@ body[data-screen="home"] .wrap>.panel{display:none!important}
       <div><span class="brand-kicker">ТВОЁ ПРОСТРАНСТВО ДЛЯ ПРОГРЕССА</span><h1>FITKNOW<span class="minimal-brand-dot">.</span></h1></div>
       <button class="theme-toggle" id="themeToggle" type="button" onclick="toggleTheme()" aria-label="Переключить тему">☾</button>
     </div>
-    <p class="sub">Тренируйся. Отслеживай. Становись сильнее.</p>
+    <p class="sub">Твой фитнес. Твой прогресс.</p>
   </div>
 
-  <div class="minimal-hero-message"><span class="minimal-eyebrow">ТВОЙ ПЛАН</span><strong>Каждый день<br>имеет значение.</strong><span class="minimal-hero-trail" aria-hidden="true"></span></div>
+  <div class="minimal-hero-message"><span class="minimal-eyebrow">ТВОЙ ПЛАН</span><strong>Сильнее.<br>Каждый день.</strong><span class="minimal-hero-trail" aria-hidden="true"></span></div>
   <div class="minimal-dashboard-panel">
   <section class="nutrition-targets" aria-label="Дневные цели питания">
-    <div class="nutrition-targets-head"><span>Цели на день</span><small>Нажмите на значение, чтобы изменить</small></div>
+    <div class="nutrition-targets-head"><span>Цели на день</span><small></small></div>
     <div class="macros" id="nutritionTargets">
       <label class="macro-box protein" for="macroProtein"><span class="macro-tag">БЕЛКИ</span><span class="macro-input-wrap"><input id="macroProtein" class="macro-input" type="number" min="0" max="1000" step="1" inputmode="decimal" placeholder="—" aria-label="Белки в граммах"><span>г</span></span></label>
       <label class="macro-box fat" for="macroFat"><span class="macro-tag">ЖИРЫ</span><span class="macro-input-wrap"><input id="macroFat" class="macro-input" type="number" min="0" max="1000" step="1" inputmode="decimal" placeholder="—" aria-label="Жиры в граммах"><span>г</span></span></label>
@@ -976,7 +1051,7 @@ body[data-screen="home"] .wrap>.panel{display:none!important}
   </div>
 
   <!-- FOOD PANEL -->
-  <div id="food" class="panel active"><div class="section-title">Питание</div><div class="rule-card">Здесь пока пусто. Во вкладке «Данные» выберите раздел и загрузите свой план.</div></div>
+  <div id="food" class="panel active"><div class="section-title">Питание</div><div class="rule-card">Пока пусто. Добавь данные во вкладке «Данные».</div></div>
 
   <!-- CARDIO PANEL -->
   <div id="cardio" class="panel"><div class="section-title">Кардио</div><div class="rule-card">Здесь пока пусто. Во вкладке «Данные» выберите раздел и загрузите свой план.</div></div>
@@ -1049,8 +1124,8 @@ body[data-screen="home"] .wrap>.panel{display:none!important}
   <div id="analyses" class="panel"><div class="section-title">Анализы</div><p class="section-intro">Загрузите свой список во вкладке «Данные». Приложение не назначает анализы, добавки или лечение.</p><div id="analysesContent"><div class="rule-card">Список пока не добавлен.</div></div></div>
 
   <div id="datahub" class="panel">
-    <div class="section-title">Управление данными FITKNOW</div>
-    <p class="section-intro">В этом разделе собраны импорт программы тренировок, загрузка питания и заметок, редактирование и резервные копии. Для импорта текста выберите нужный раздел.</p>
+    <div class="section-title">Мои данные</div>
+    <p class="section-intro">Загружай и сохраняй свой план.</p>
     <div class="edit-banner" id="editBanner">Режим редактирования включён. Откройте нужную вкладку, исправьте текст и нажмите «Сохранить изменения».</div>
 
     <div class="import-card" id="trainingProgramDataImport">
@@ -1115,7 +1190,7 @@ body[data-screen="home"] .wrap>.panel{display:none!important}
     </div>
   </div>
 
-  <p class="footer-note">Точные КБЖУ зависят от конкретных продуктов и этикеток</p>
+  <p class="footer-note">Значения зависят от состава продуктов</p>
   <nav class="minimal-bottom-nav" aria-label="Основная навигация">
    <button type="button" data-nav="home" aria-label="Главная"><span class="minimal-nav-glyph">⌂</span><span>Главная</span></button>
    <button type="button" data-nav="train" aria-label="Тренировки"><span class="minimal-nav-glyph">⌁</span><span>Тренировки</span></button>
@@ -1914,6 +1989,24 @@ function initMinimalNav(){
 }
 initMinimalNav();
 
+
+/* Keep lengthy onboarding text available, but collapsed by default. */
+function initMinimalReadableHelp(){
+ const targets=[
+   document.querySelector('#trainingProgramDataImport > p'),
+   ...document.querySelectorAll('#datahub .data-card > p')
+ ];
+ targets.forEach(p=>{
+  if(!p || p.closest('details') || !p.parentNode)return;
+  const details=document.createElement('details');
+  details.className='minimal-hint';
+  const sum=document.createElement('summary');
+  sum.textContent='Как пользоваться';
+  p.parentNode.insertBefore(details,p);
+  details.append(sum,p);
+ });
+}
+initMinimalReadableHelp();
 </script>
 </body>
 </html>
