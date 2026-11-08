@@ -838,19 +838,101 @@ background:var(--card);border:1px solid var(--glass-border);border-radius:18px}
 .macro-clear-btn{min-height:32px!important;font-size:12px!important;padding:6px 11px!important;border:1px solid var(--glass-border);border-radius:12px;background:var(--card);color:var(--text-dim);cursor:pointer;flex-shrink:0}
 @media(max-width:380px){.nutrition-targets .macro-box{padding:11px 4px!important}.macro-input-wrap{font-size:12px}.nutrition-targets-head small{font-size:11px}}
 
+
+/* FITKNOW MINIMAL 2026 — independent identity, no external brand assets */
+:root{--minimal-ink:#101112;--minimal-white:#fff;--minimal-muted:#72757b}
+html,body{overflow-x:clip}
+body{background:#f6f6f4!important;color:#111!important;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif!important}
+body::before{display:none!important}
+.wrap{max-width:690px;padding:0 16px 112px!important;margin:auto}
+.minimal-home{color:#fff;background:#101112;margin:0 -16px;padding:0 16px 30px;min-height:calc(100vh - 96px);position:relative;overflow:hidden}
+.minimal-home::before{content:"";position:absolute;top:85px;right:-70px;width:260px;height:300px;transform:rotate(-24deg);border-radius:50%;border:44px solid rgba(255,255,255,.055);pointer-events:none}
+.minimal-home .hero{padding:28px 2px 10px!important}
+.minimal-home .hero h1{display:block!important;color:#fff!important;background:none!important;-webkit-text-fill-color:#fff!important;font-style:italic;font-weight:950;letter-spacing:-.07em;font-size:clamp(36px,8vw,48px)!important;line-height:1.05}
+.minimal-brand-dot{color:#b9fd4b}
+.minimal-home .brand-kicker{font-size:10px;letter-spacing:.15em;color:#b9fd4b!important}
+.minimal-home .hero .sub{font-size:15px!important;color:#b7b7b7!important}
+.minimal-home .brand-row{align-items:center}
+.minimal-home .theme-toggle{display:none!important}
+.minimal-hero-message{min-height:196px;padding:20px 2px 12px;position:relative;display:flex;flex-direction:column;justify-content:center;gap:10px}
+.minimal-hero-message strong{font-size:clamp(33px,8vw,48px);font-weight:950;line-height:1.08;letter-spacing:-.055em;position:relative;z-index:1}
+.minimal-eyebrow{font-size:11px;color:#b9fd4b;letter-spacing:.18em;font-weight:900}
+.minimal-hero-trail{position:absolute;right:-23px;top:10px;width:180px;height:180px;border:1px solid rgba(255,255,255,.2);border-radius:50%;pointer-events:none}
+.minimal-dashboard-panel{background:#fff;color:#101112;border-radius:27px;padding:18px 17px 20px;margin:0 -3px;box-shadow:0 18px 45px rgba(0,0,0,.12)}
+.minimal-dashboard-panel .nutrition-targets{margin:0!important}
+.minimal-dashboard-panel .nutrition-targets-head>span{font-size:19px!important;font-weight:950!important;color:#151515!important}
+.minimal-dashboard-panel .nutrition-targets-head small{color:#777!important}
+.minimal-dashboard-panel .macros{gap:9px!important;margin:16px 0 16px!important}
+.minimal-dashboard-panel .macro-box{background:#f3f3f2!important;border:1px solid #e9e9e8!important;border-radius:17px!important;box-shadow:none!important;padding:16px 7px!important}
+.minimal-dashboard-panel .macro-tag{color:#777!important}
+.minimal-dashboard-panel .macro-input-wrap,.minimal-dashboard-panel .macro-input{color:#111!important}
+.minimal-dashboard-panel .kcal-target-row{background:#111!important;border-radius:17px!important;border:0!important;color:#fff!important;box-shadow:none!important;padding:17px 14px!important}
+.minimal-dashboard-panel .kcal-label{color:#fff!important}
+.minimal-dashboard-panel .kcal-label small{color:#aaa!important}
+.minimal-dashboard-panel .calories-edit,.minimal-dashboard-panel #macroCalories{color:#fff!important}
+.minimal-dashboard-panel .nutrition-target-actions{color:#6d6d6d!important}
+.minimal-dashboard-panel .macro-clear-btn{background:transparent!important;border:0!important;color:#666!important}
+.minimal-home-actions{display:grid;gap:10px;margin-top:19px}
+.minimal-home-btn{width:100%;border:1px solid #fff;background:#fff;color:#111;border-radius:18px;min-height:56px;padding:14px 18px;text-align:left;display:flex;justify-content:space-between;align-items:center;font:800 16px/1.2 inherit;cursor:pointer}
+.minimal-home-btn-secondary{color:#fff;background:transparent;border-color:#535353}
+.minimal-home-btn span{font-size:22px}
+.tabs{display:none!important}
+.minimal-section-heading{padding:27px 3px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.minimal-section-heading[hidden]{display:none!important}
+.minimal-section-heading span{font-size:11px;letter-spacing:.14em;font-weight:850;color:#777}
+.minimal-section-heading h2{margin:3px 0 0;font-size:clamp(28px,7vw,42px);font-weight:950;letter-spacing:-.055em;line-height:1.13;color:var(--text)}
+#minimalSectionTheme{border:1px solid var(--line);border-radius:14px;min-width:43px;height:43px;background:var(--card);color:var(--text);font-size:21px;cursor:pointer}
+body[data-screen="section"]{--bg:#f6f6f4;--bg2:#fff;--card:#fff;--card2:#f6f6f6;--line:#e6e6e5;--lime:#111;--lime-dim:#4d4d4d;--orange:#333;--blue:#333;--text:#141414;--text-dim:#6a6a6a;--glass:#fff;--glass-strong:#fff;--glass-border:#e5e5e5;--glass-shadow:none;--shadow:none;--accent:#141414;background:#f6f6f4!important;color:#141414!important;color-scheme:light}
+body[data-screen="section"][data-section-dark="true"]{--bg:#101112;--bg2:#141516;--card:#1b1d1e;--card2:#222526;--line:#383a3c;--lime:#f5f5f5;--lime-dim:#ddd;--orange:#f5f5f5;--blue:#f5f5f5;--text:#fff;--text-dim:#a9aaad;--glass:#1b1d1e;--glass-strong:#202224;--glass-border:#383a3c;--glass-shadow:none;--shadow:none;--accent:#fff;background:#111!important;color:#fff!important;color-scheme:dark}
+body[data-screen="section"] .wrap>.panel{padding:4px 0 20px}
+body[data-screen="section"] .panel .section-title{font-size:12px!important;color:var(--text)!important;font-weight:900!important;letter-spacing:.1em}
+body[data-screen="section"] :is(.meal-card,.prod-card,.ex-card,.protocol-card,.rule-card,.big-stat,.water-row,.check-item,.import-card,.data-card,.day-box,.cardio-opt,.avg-hero,.entry-row,.illustrated-welcome){border:1px solid var(--line)!important;background:var(--card)!important;box-shadow:none!important;border-radius:17px!important;backdrop-filter:none!important}
+body[data-screen="section"] .illustrated-welcome{padding:18px!important}
+body[data-screen="section"] .illustrated-welcome .fit-sticker{display:none!important}
+body[data-screen="section"] .illustrated-welcome .welcome-tag{color:var(--text-dim)!important}
+body[data-screen="section"] :is(.weight-input,.import-textarea,.data-select,.add-row input){background:var(--card2)!important;color:var(--text)!important;border:1px solid var(--line)!important}
+body[data-screen="section"] .ex-card .ex-s,body[data-screen="section"] .prod-card .pkcal,body[data-screen="section"] .big-stat .v{color:var(--text)!important}
+body[data-screen="section"] .action-btn.primary,body[data-screen="section"] .btn.primary,body[data-screen="section"] .add-btn{background:var(--text)!important;color:var(--bg)!important;box-shadow:none!important;border:0!important}
+body[data-screen="section"] .action-btn,body[data-screen="section"] .btn,body[data-screen="section"] .file-picker,body[data-screen="section"] .file-label{border-radius:13px!important;box-shadow:none!important}
+body[data-screen="section"] #neoStickerPanel,body[data-screen="section"] .neo-sticker-row{display:none!important}
+body[data-screen="section"] .day-btn{box-shadow:none!important;background:var(--card)!important;color:var(--text)!important;border-color:var(--line)!important}
+body[data-screen="section"] .day-radio:checked~.day-tabs .day-btn{color:var(--text)}
+body[data-screen="section"] .weight-label{color:var(--text-dim)}
+body[data-screen="section"] .footer-note{color:var(--text-dim)}
+.minimal-bottom-nav{position:fixed;z-index:65;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,690px);padding:9px 7px calc(9px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);display:grid;grid-template-columns:repeat(5,minmax(0,1fr));box-shadow:0 -8px 27px rgba(0,0,0,.08);border-top:1px solid #e8e8e8}
+.minimal-bottom-nav button{border:0;background:transparent;color:#777;display:flex;flex-direction:column;align-items:center;gap:3px;justify-content:center;min-width:0;min-height:49px;padding:3px 1px;font:700 10px/1.15 inherit;cursor:pointer}
+.minimal-bottom-nav button[aria-current="page"]{color:#000!important}
+.minimal-nav-glyph{font-size:23px;font-weight:800;line-height:1.1}
+.minimal-more{position:fixed;z-index:64;left:50%;bottom:calc(67px + env(safe-area-inset-bottom));transform:translateX(-50%);width:min(calc(100% - 24px),660px);padding:18px;border-radius:22px 22px 12px 12px;background:#fff;color:#111;box-shadow:0 -8px 35px rgba(0,0,0,.23)}
+.minimal-more[hidden]{display:none}
+.minimal-more-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.minimal-more-top strong{font-size:20px;font-weight:950}
+.minimal-more-top button{border:0;background:#efefef;width:35px;height:35px;border-radius:50%;font-size:17px}
+.minimal-more>button[data-open-tab]{display:flex;justify-content:space-between;align-items:center;width:100%;padding:13px 3px;min-height:44px;border:0;border-top:1px solid #eee;background:transparent;color:#111;font-size:17px;font-weight:750;text-align:left;cursor:pointer}
+.minimal-more>button span{font-size:19px;color:#777}
+body[data-screen="home"] .footer-note{display:none}
+body[data-screen="home"] .minimal-section-heading{display:none!important}
+body[data-screen="section"] #minimalHome{display:none!important}
+body[data-screen="home"] .wrap>.panel{display:none!important}
+@media(max-width:480px){.wrap{padding:0 13px 108px!important}.minimal-home{margin:0 -13px;padding:0 13px 26px}.minimal-dashboard-panel{padding:17px 12px}.minimal-hero-message{min-height:180px}.minimal-bottom-nav button{font-size:10px}.minimal-nav-glyph{font-size:23px}}
+@media(min-width:690px){.minimal-home{border-radius:0 0 28px 28px}}
+@media(prefers-reduced-motion:reduce){.minimal-home *,.minimal-bottom-nav *{transition:none!important}}
+
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <div class="hero">
+<div id="minimalHome" class="minimal-home">  <div class="hero">
     <div class="brand-row">
-      <div><span class="brand-kicker">ФИТНЕС · ПИТАНИЕ · ТВОЙ ПРОГРЕСС</span><h1><img class="header-logo" alt="" src="./stickers/dumbbell.svg">FITKNOW</h1></div>
+      <div><span class="brand-kicker">ТВОЁ ПРОСТРАНСТВО ДЛЯ ПРОГРЕССА</span><h1>FITKNOW<span class="minimal-brand-dot">.</span></h1></div>
       <button class="theme-toggle" id="themeToggle" type="button" onclick="toggleTheme()" aria-label="Переключить тему">☾</button>
     </div>
-    <p class="sub">Тренировки, питание, добавки и контроль — в одном месте</p>
+    <p class="sub">Тренируйся. Отслеживай. Становись сильнее.</p>
   </div>
 
+  <div class="minimal-hero-message"><span class="minimal-eyebrow">ТВОЙ ПЛАН</span><strong>Каждый день<br>имеет значение.</strong><span class="minimal-hero-trail" aria-hidden="true"></span></div>
+  <div class="minimal-dashboard-panel">
   <section class="nutrition-targets" aria-label="Дневные цели питания">
     <div class="nutrition-targets-head"><span>Цели на день</span><small>Нажмите на значение, чтобы изменить</small></div>
     <div class="macros" id="nutritionTargets">
@@ -862,7 +944,13 @@ background:var(--card);border:1px solid var(--glass-border);border-radius:18px}
     <div class="nutrition-target-actions"><span id="macroSaveStatus" role="status" aria-live="polite">Значения сохраняются на устройстве</span><button type="button" class="macro-clear-btn" id="macroClearBtn">Сбросить</button></div>
   </section>
 
-  <input type="radio" name="tabgroup" id="tab-food" class="tab-radio" checked>
+  <div class="minimal-home-actions">
+    <button class="minimal-home-btn" type="button" data-open-tab="train">Открыть тренировки <span aria-hidden="true">↗</span></button>
+    <button class="minimal-home-btn minimal-home-btn-secondary" type="button" data-open-tab="data">Управление данными <span aria-hidden="true">↗</span></button>
+  </div>
+  </div>
+</div>
+  <input type="radio" name="tabgroup" id="tab-food" class="tab-radio">
   <input type="radio" name="tabgroup" id="tab-cardio" class="tab-radio">
   <input type="radio" name="tabgroup" id="tab-foods" class="tab-radio">
   <input type="radio" name="tabgroup" id="tab-train" class="tab-radio">
@@ -871,7 +959,7 @@ background:var(--card);border:1px solid var(--glass-border);border-radius:18px}
   <input type="radio" name="tabgroup" id="tab-analyses" class="tab-radio">
   <input type="radio" name="tabgroup" id="tab-data" class="tab-radio">
 
-  <div class="tabs">
+  <div class="tabs" aria-label="Разделы приложения">
     <label class="tab-btn" for="tab-food">Питание</label>
     <label class="tab-btn" for="tab-train">Тренировки</label>
     <label class="tab-btn" for="tab-cardio">Кардио</label>
@@ -880,6 +968,11 @@ background:var(--card);border:1px solid var(--glass-border);border-radius:18px}
     <label class="tab-btn" for="tab-analyses">Анализы</label>
     <label class="tab-btn" for="tab-health">Личные записи</label>
     <label class="tab-btn" for="tab-data">Данные</label>
+  </div>
+
+  <div class="minimal-section-heading" id="minimalSectionHeading" hidden>
+    <div><span>FITKNOW / МОЙ ПЛАН</span><h2 id="minimalPageTitle">Тренировки</h2></div>
+    <button id="minimalSectionTheme" type="button" aria-label="Сменить тему разделов" title="Сменить тему">◐</button>
   </div>
 
   <!-- FOOD PANEL -->
@@ -1023,6 +1116,22 @@ background:var(--card);border:1px solid var(--glass-border);border-radius:18px}
   </div>
 
   <p class="footer-note">Точные КБЖУ зависят от конкретных продуктов и этикеток</p>
+  <nav class="minimal-bottom-nav" aria-label="Основная навигация">
+   <button type="button" data-nav="home" aria-label="Главная"><span class="minimal-nav-glyph">⌂</span><span>Главная</span></button>
+   <button type="button" data-nav="train" aria-label="Тренировки"><span class="minimal-nav-glyph">⌁</span><span>Тренировки</span></button>
+   <button type="button" data-nav="food" aria-label="Питание"><span class="minimal-nav-glyph">◴</span><span>Питание</span></button>
+   <button type="button" data-nav="data" aria-label="Данные"><span class="minimal-nav-glyph">▦</span><span>Данные</span></button>
+   <button type="button" id="minimalMoreToggle" aria-haspopup="true" aria-expanded="false" aria-controls="minimalMore" aria-label="Ещё разделы"><span class="minimal-nav-glyph">☷</span><span>Ещё</span></button>
+  </nav>
+  <div id="minimalMore" class="minimal-more" hidden role="dialog" aria-modal="false" aria-label="Дополнительные разделы">
+   <div class="minimal-more-top"><strong>Все разделы</strong><button type="button" id="minimalMoreClose" aria-label="Закрыть">✕</button></div>
+   <button type="button" data-open-tab="cardio">Кардио <span>↗</span></button>
+   <button type="button" data-open-tab="foods">Продукты <span>↗</span></button>
+   <button type="button" data-open-tab="supplements">БАДы <span>↗</span></button>
+   <button type="button" data-open-tab="analyses">Анализы <span>↗</span></button>
+   <button type="button" data-open-tab="health">Личные записи <span>↗</span></button>
+  </div>
+
 </div>
 
 <script>
@@ -1739,7 +1848,71 @@ function initPromoStickers(){
    section.append(label,grid);datahub.append(section);
  }
 }
-initPromoStickers();
+if(!document.querySelector(".minimal-bottom-nav")) initPromoStickers();
+
+
+/* FITKNOW Minimal 2026 navigation. Original records and storage keys remain unchanged. */
+const MINIMAL_SECTION_THEME_KEY='fitknow_minimal_section_dark_v1';
+const minimalTitles={home:'Главная',train:'Тренировки',food:'Питание',data:'Данные',cardio:'Кардио',foods:'Продукты',supplements:'БАДы',analyses:'Анализы',health:'Личные записи'};
+const minimalRadioIds={train:'tab-train',food:'tab-food',data:'tab-data',cardio:'tab-cardio',foods:'tab-foods',supplements:'tab-supplements',analyses:'tab-analyses',health:'tab-health'};
+function minimalReadSectionTheme(){
+ try{return localStorage.getItem(MINIMAL_SECTION_THEME_KEY)==='true';}catch(e){return false;}
+}
+function minimalCloseMore(){
+ const menu=document.getElementById('minimalMore');
+ const button=document.getElementById('minimalMoreToggle');
+ if(menu)menu.hidden=true;
+ button?.setAttribute('aria-expanded','false');
+}
+function minimalSetScreen(name,scroll=true){
+ const section=Object.hasOwn(minimalRadioIds,name)?name:'home';
+ document.body.dataset.screen=section==='home'?'home':'section';
+ document.body.dataset.sectionDark=String(minimalReadSectionTheme());
+ if(section!=='home'){
+   const radio=document.getElementById(minimalRadioIds[section]);
+   if(radio)radio.checked=true;
+ }
+ const heading=document.getElementById('minimalSectionHeading');
+ if(heading)heading.hidden=section==='home';
+ const title=document.getElementById('minimalPageTitle');
+ if(title)title.textContent=minimalTitles[section];
+ document.querySelectorAll('[data-nav]').forEach(button=>{
+   const current=button.dataset.nav===section;
+   if(current)button.setAttribute('aria-current','page');else button.removeAttribute('aria-current');
+ });
+ const moreButton=document.getElementById('minimalMoreToggle');
+ if(moreButton){
+  const selected=!['home','train','food','data'].includes(section);
+  if(selected)moreButton.setAttribute('aria-current','page');else moreButton.removeAttribute('aria-current');
+ }
+ minimalCloseMore();
+ if(scroll)window.scrollTo({top:0,behavior:'instant'});
+}
+function initMinimalNav(){
+ document.querySelectorAll('[data-nav]').forEach(btn=>btn.addEventListener('click',()=>minimalSetScreen(btn.dataset.nav)));
+ document.querySelectorAll('[data-open-tab]').forEach(btn=>btn.addEventListener('click',()=>minimalSetScreen(btn.dataset.openTab)));
+ document.getElementById('minimalMoreToggle')?.addEventListener('click',()=>{
+   const menu=document.getElementById('minimalMore');
+   if(!menu)return;
+   menu.hidden=!menu.hidden;
+   document.getElementById('minimalMoreToggle').setAttribute('aria-expanded',String(!menu.hidden));
+ });
+ document.getElementById('minimalMoreClose')?.addEventListener('click',minimalCloseMore);
+ document.getElementById('minimalSectionTheme')?.addEventListener('click',()=>{
+   const dark=!minimalReadSectionTheme();
+   try{localStorage.setItem(MINIMAL_SECTION_THEME_KEY,String(dark))}catch(e){}
+   document.body.dataset.sectionDark=String(dark);
+   document.getElementById('minimalSectionTheme').textContent=dark?'☀':'◐';
+ });
+ document.querySelectorAll('.tabs .tab-btn').forEach(label=>label.addEventListener('click',()=>{
+   const id=label.getAttribute('for');
+   const match=Object.keys(minimalRadioIds).find(key=>minimalRadioIds[key]===id);
+   if(match)minimalSetScreen(match,false);
+ }));
+ document.getElementById('minimalSectionTheme').textContent=minimalReadSectionTheme()?'☀':'◐';
+ minimalSetScreen('home',false);
+}
+initMinimalNav();
 
 </script>
 </body>
