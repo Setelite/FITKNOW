@@ -1,5 +1,5 @@
 /* FITKNOW V10. Always retrieve current HTML while online; cache app shell for offline use. */
-const CACHE_NAME='fitknow-v14-clean-photo';
+const CACHE_NAME='fitknow-v15-compact-hero';
 const APP_SHELL=[
  './index.html','./manifest.webmanifest','./icon.svg',
  './assets/fitness-couple-approved.webp',
