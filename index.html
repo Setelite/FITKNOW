@@ -1297,6 +1297,29 @@ body[data-screen="home"] .minimal-dashboard-panel{position:relative!important;z-
  }
 }
 
+
+/* FITKNOW V8 — white tab icons on dark dock */
+body[data-screen="home"] .minimal-bottom-nav,
+body[data-screen="section"] .minimal-bottom-nav{
+ background:#101010!important;border:1px solid #777!important;
+ box-shadow:0 8px 24px rgba(0,0,0,.32)!important;
+}
+body[data-screen="home"] .minimal-bottom-nav button,
+body[data-screen="section"] .minimal-bottom-nav button{
+ background:#101010!important;color:#fff!important;border:1px solid #666!important;
+}
+body[data-screen="home"] .minimal-bottom-nav button:not([aria-current="page"]) .minimal-nav-icon,
+body[data-screen="section"] .minimal-bottom-nav button:not([aria-current="page"]) .minimal-nav-icon{
+ stroke:#FFFFFF!important;
+}
+body[data-screen="home"] .minimal-bottom-nav button[aria-current="page"],
+body[data-screen="section"] .minimal-bottom-nav button[aria-current="page"]{
+ background:#FFD400!important;border:2px solid #111!important;color:#111!important;
+}
+body[data-screen="home"] .minimal-bottom-nav button[aria-current="page"] .minimal-nav-icon,
+body[data-screen="section"] .minimal-bottom-nav button[aria-current="page"] .minimal-nav-icon{
+ stroke:#111111!important;
+}
 </style>
 </head>
 <body>
