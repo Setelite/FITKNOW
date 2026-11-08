@@ -2,16 +2,16 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
 
 
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="FITKNOW">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="icon" href="./icon.svg" type="image/svg+xml">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="description" content="FITKNOW — удобный план тренировок, питания и личных заметок.">
-<meta name="theme-color" content="#0b0b10">
+<meta name="theme-color" content="#101010">
 <title>FITKNOW — твой фитнес-план</title>
 <style>
   :root{
@@ -1144,6 +1144,55 @@ body[data-screen="section"][data-section-dark="true"] .action-btn:not(.primary){
  .minimal-dashboard-panel .macro-input{width:63px!important;flex-basis:63px!important}
 }
 
+
+/* FITKNOW HERO COUPLE V5 — immersive dark safe area and photo */
+html{background:#101010!important;min-height:100%;color-scheme:dark}
+body[data-screen="home"]{background:#101010!important;min-height:100dvh!important;color-scheme:dark}
+body[data-screen="home"] .wrap{background:#101010!important;min-height:100dvh!important}
+body[data-screen="home"] .minimal-home{
+  background:#101010!important;
+  padding-top:env(safe-area-inset-top,0px)!important;
+  min-height:calc(100dvh - 65px)!important;
+  isolation:isolate!important
+}
+body[data-screen="home"] .minimal-home::after{
+  content:"";position:absolute;z-index:0;pointer-events:none;
+  top:0;right:0;width:min(82%,430px);height:435px;
+  background-image:
+    linear-gradient(90deg,#101010 0%,rgba(16,16,16,.22) 38%,rgba(16,16,16,0) 75%),
+    linear-gradient(0deg,#101010 0%,rgba(16,16,16,0) 28%),
+    url("./assets/fitness-couple.webp");
+  background-position:center,center,right top;
+  background-repeat:no-repeat;
+  background-size:cover,cover,cover;
+  opacity:.95;
+}
+body[data-screen="home"] .minimal-home>.hero,
+body[data-screen="home"] .minimal-home>.minimal-hero-message,
+body[data-screen="home"] .minimal-home>.minimal-dashboard-panel{
+ position:relative!important;z-index:1!important
+}
+body[data-screen="home"] .minimal-home .hero{padding-top:34px!important}
+body[data-screen="home"] .minimal-hero-message{min-height:225px!important;padding-top:46px!important}
+body[data-screen="home"] .minimal-hero-message strong{
+  text-shadow:0 2px 14px rgba(0,0,0,.65)!important
+}
+body[data-screen="home"] .minimal-hero-trail{opacity:.4!important}
+body[data-screen="home"] .minimal-home .hero h1{text-shadow:0 2px 12px #101010}
+body[data-screen="home"] .minimal-dashboard-panel{
+  background:#fff!important;border-radius:27px!important
+}
+body[data-screen="home"] .minimal-bottom-nav{background:#fff!important}
+body[data-screen="home"] .minimal-home-actions{margin-top:21px}
+@media(min-width:600px){
+ body[data-screen="home"] .minimal-home::after{width:390px;height:460px;right:3%}
+}
+@media(max-width:410px){
+ body[data-screen="home"] .minimal-home::after{width:85%;height:400px}
+ body[data-screen="home"] .minimal-home .hero{padding-top:25px!important}
+ body[data-screen="home"] .minimal-hero-message{min-height:205px!important}
+}
+
 </style>
 </head>
 <body>
@@ -2092,6 +2141,8 @@ function minimalCloseMore(){
 function minimalSetScreen(name,scroll=true){
  const section=Object.hasOwn(minimalRadioIds,name)?name:'home';
  document.body.dataset.screen=section==='home'?'home':'section';
+ const themeMeta=document.querySelector('meta[name="theme-color"]');
+ if(themeMeta)themeMeta.content=section==='home'?'#101010':(minimalReadSectionTheme()?'#101010':'#f6f6f5');
  document.body.dataset.sectionDark=String(minimalReadSectionTheme());
  if(section!=='home'){
    const radio=document.getElementById(minimalRadioIds[section]);
