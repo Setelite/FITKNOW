@@ -1,0 +1,30 @@
+name: Import FITKNOW hero photo
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/import-fitknow-hero.yml'
+permissions:
+  contents: write
+jobs:
+  import-photo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download clean hero photograph
+        env:
+          PHOTO_URL: "https://cdn.openart.ai/openart-uploads/production/attachment-transfers/464bee9db20dd9b179adb65c2b0c4a0a1bb7d15ab79e83132d3a613c772f1cbd.webp"
+        run: |
+          mkdir -p assets
+          curl --fail --location --retry 3 --max-time 60 "$PHOTO_URL" -o assets/fitness-couple-hero-v14.webp
+          test "$(wc -c < assets/fitness-couple-hero-v14.webp)" -gt 15000
+          file assets/fitness-couple-hero-v14.webp
+      - name: Store image in repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/fitness-couple-hero-v14.webp
+          if ! git diff --cached --quiet; then
+            git commit -m "Store clean FITKNOW hero photograph locally"
+            git push
+          fi
