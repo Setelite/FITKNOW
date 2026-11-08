@@ -1533,6 +1533,49 @@ body[data-screen="home"] .minimal-hero-trail{display:none!important}
 body[data-screen="home"] .minimal-home .hero h1,
 body[data-screen="home"] .minimal-hero-message strong{text-shadow:none!important}
 
+
+/* FITKNOW V15 — remove excess spacing around hero on mobile */
+body[data-screen="home"] .minimal-home{
+ padding-top:0!important;
+}
+body[data-screen="home"] .minimal-home::after{
+ top:-22px!important;
+ background-image:url("./assets/fitness-couple-hero-v14.webp?v=15")!important;
+ background-position:center top!important;
+ background-repeat:no-repeat!important;
+ background-size:100% auto!important;
+ filter:none!important;-webkit-filter:none!important;
+ opacity:1!important;
+}
+body[data-screen="home"] .minimal-home>.hero{
+ padding-top:12px!important;
+ padding-bottom:0!important;
+ margin-bottom:0!important;
+}
+body[data-screen="home"] .minimal-hero-message{
+ min-height:clamp(180px,55vw,225px)!important;
+ padding:9px 2px 4px!important;
+ margin-bottom:0!important;
+}
+body[data-screen="home"] .minimal-dashboard-panel{
+ margin-top:-18px!important;
+ position:relative!important;
+ z-index:3!important;
+}
+@media(max-width:410px){
+ body[data-screen="home"] .minimal-home>.hero{padding-top:10px!important}
+ body[data-screen="home"] .minimal-hero-message{min-height:188px!important;padding:7px 2px 3px!important}
+ body[data-screen="home"] .minimal-dashboard-panel{margin-top:-23px!important}
+}
+@media(min-width:600px){
+ body[data-screen="home"] .minimal-home::after{
+  top:-12px!important;
+  background-position:right top!important;
+  background-size:min(100%,600px) auto!important;
+ }
+ body[data-screen="home"] .minimal-hero-message{min-height:215px!important}
+}
+
 </style>
 </head>
 <body>
