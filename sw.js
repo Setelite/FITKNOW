@@ -1,9 +1,17 @@
 /* FITKNOW V10. Always retrieve current HTML while online; cache app shell for offline use. */
-const CACHE_NAME='fitknow-v16-fullbody';
+const CACHE_NAME='fitknow-v17-dashboard';
 const APP_SHELL=[
  './index.html','./manifest.webmanifest','./icon.svg',
  './assets/fitness-couple-approved.webp',
  './assets/fitness-couple-hero-v14.webp', './assets/fitness-couple-fullbody-v16.webp',
+ './assets/dashboard-icons/nutrition.webp',
+ './assets/dashboard-icons/training.webp',
+ './assets/dashboard-icons/supplements.webp',
+ './assets/dashboard-icons/analyses.webp',
+ './assets/dashboard-icons/cardio.webp',
+ './assets/dashboard-icons/protocol.webp',
+ './assets/dashboard-icons/data.webp',
+ './assets/dashboard-icons/settings.webp',
  './stickers/dumbbell.svg','./stickers/apple.svg','./stickers/chart.svg',
  './stickers/heart.svg','./stickers/clipboard.svg','./stickers/flame.svg',
  './stickers/water.svg','./stickers/check.svg'
