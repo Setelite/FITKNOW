@@ -1630,22 +1630,106 @@ body[data-screen="home"] .minimal-hero-message strong{
  body[data-screen="home"] .minimal-hero-message{min-height:465px!important}
 }
 
+
+/* FITKNOW DASHBOARD V17 — genuine interactive dashboard */
+html,body{background:#09090b!important}
+.wrap{max-width:740px!important;padding:0 13px calc(45px + env(safe-area-inset-bottom))!important}
+body[data-screen="home"] .minimal-home.fk-home{min-height:100dvh!important;background:#09090b!important;color:#fff!important;overflow:hidden!important;margin:0 -13px!important;padding:0 16px 60px!important;border-radius:0!important}
+body[data-screen="home"] .fk-home::before{display:none!important;content:none!important}
+body[data-screen="home"] .fk-home::after{content:""!important;display:block!important;position:absolute!important;top:0!important;left:auto!important;right:-22px!important;width:calc(100% + 22px)!important;height:clamp(385px,113vw,590px)!important;
+background:url("./assets/fitness-couple-fullbody-v16.webp?v=17") right top / auto 100% no-repeat!important;
+opacity:1!important;filter:none!important;-webkit-filter:none!important;pointer-events:none!important;z-index:0!important}
+.fk-home>*{position:relative;z-index:2}
+body[data-screen="home"] .fk-hero{height:clamp(295px,78vw,445px);padding:29px 0 0;position:relative;z-index:1}
+.fk-brand{font:italic 1000 clamp(46px,11.3vw,83px)/.95 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;letter-spacing:-.075em;color:#fff;text-shadow:0 2px 6px #000}
+.fk-brand span{color:#FFD400}
+.fk-tagline{font-size:clamp(17px,4vw,23px);line-height:1.35;color:#ddd;max-width:230px;margin:20px 0}
+.fk-underline{background:#FFD400;border-radius:9px;height:6px;width:83px}
+.fk-info{position:relative;z-index:3;color:#fff;padding:18px 0 0}
+.fk-info-top,.fk-progress-line{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.fk-info-top>span{color:#FFD400;letter-spacing:.15em;font-size:11px;font-weight:950}
+.fk-info-top button{color:#fff;background:#292929;border:1px solid #888;padding:9px 12px;border-radius:13px;font-size:13px;font-weight:850}
+.fk-progress-line{margin:17px 0 10px;font-size:18px}
+.fk-progress-line strong:last-child{color:#FFD400}
+.fk-track{height:13px;background:#555;border-radius:20px;border:1px solid #747474;overflow:hidden}
+.fk-track span{display:block;height:100%;width:0;background:#FFD400;border-radius:20px;transition:width .2s}
+.fk-progress-hint{font-size:12px;color:#ccc;margin:9px 0 17px}
+.fk-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.fk-stat{display:flex;flex-direction:column;gap:8px;min-height:108px;min-width:0;text-align:left;padding:11px 9px;color:#fff;
+background:linear-gradient(150deg,#303030,#151515);border:1px solid #747474;border-radius:19px;box-shadow:inset 0 1px rgba(255,255,255,.16)}
+.fk-stat small{color:#FFD400;font-size:11px;font-weight:950}
+.fk-stat strong{font-size:clamp(18px,5vw,27px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:950}
+.fk-stat>span{font-size:11px;color:#ccc;margin-top:auto}
+body[data-screen="home"] .fk-macros{margin:21px 0 0!important;padding:18px 13px!important;
+background:linear-gradient(145deg,#292929,#121212)!important;color:#fff!important;
+border:1.5px solid rgba(255,212,0,.72)!important;border-radius:25px!important;box-shadow:inset 0 1px 2px #ffffff35,0 12px 25px #0005!important}
+body[data-screen="home"] .fk-macros .nutrition-targets{margin:0!important}
+body[data-screen="home"] .fk-macros .nutrition-targets-head>span{color:#fff!important;font-size:24px!important}
+body[data-screen="home"] .fk-macros .macro-box{background:linear-gradient(150deg,#353535,#202020)!important;border:1px solid #555!important;border-radius:17px!important;box-shadow:none!important;min-width:0}
+body[data-screen="home"] .fk-macros .macro-tag{color:#ddd!important;font-size:11px!important}
+body[data-screen="home"] .fk-macros .macro-input,
+body[data-screen="home"] .fk-macros .macro-input-wrap,
+body[data-screen="home"] .fk-macros .macro-input-wrap>span{color:#FFD400!important;font-weight:950!important}
+body[data-screen="home"] .fk-macros .kcal-target-row{background:#080808!important;border:1px solid #555!important;border-radius:17px!important;color:#fff!important}
+body[data-screen="home"] .fk-macros .kcal-label{color:#fff!important}
+body[data-screen="home"] .fk-macros #macroCalories,
+body[data-screen="home"] .fk-macros .calories-edit{color:#FFD400!important}
+body[data-screen="home"] .fk-macros .nutrition-target-actions{color:#bbb!important}
+body[data-screen="home"] .fk-macros .macro-clear-btn{color:#fff!important;border:1px solid #656565!important;background:#292929!important}
+.fk-menu{margin-top:29px}
+.fk-menu-head>span{font-size:11px;letter-spacing:.18em;color:#FFD400;font-weight:950}
+.fk-menu-head h2{font-size:clamp(28px,7vw,40px);color:#fff!important;font-weight:950;letter-spacing:-.05em;margin:6px 0 18px}
+.fk-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.fk-tile{isolation:isolate;display:flex;flex-direction:column;position:relative;min-width:0;min-height:216px;padding:11px 13px 17px;
+color:#fff;text-align:left;border-radius:24px;border:1.5px solid #dbc26f;background:radial-gradient(ellipse at 50% 0%,#ffd40030,transparent 56%),linear-gradient(145deg,#323232,#101010);
+box-shadow:inset 0 1px 2px #ffffff70,0 8px 24px #0008,0 2px 10px #ffd40021;cursor:pointer}
+.fk-tile:after{content:"";position:absolute;left:18%;right:18%;bottom:-1px;height:5px;background:#FFD400;filter:blur(7px);opacity:.4;pointer-events:none}
+.fk-tile-art{display:grid;place-items:center;height:107px;margin-bottom:5px}
+.fk-tile-art img{display:block;width:min(100%,155px);height:108px;object-fit:contain;filter:drop-shadow(0 5px 6px #0004)}
+.fk-tile strong{font-size:clamp(18px,5vw,24px);font-weight:950;line-height:1.1;letter-spacing:-.04em}
+.fk-tile-desc{font-size:12px;color:#ccc;line-height:1.35;margin:8px 28px 0 0}
+.fk-tile-arrow{position:absolute;right:12px;bottom:12px;display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:#FFD400;color:#111;font-size:24px;font-weight:950}
+.fk-back{color:#111;background:#fff;border:1px solid #ddd;padding:12px 14px;min-height:45px;border-radius:13px;font-weight:900;font-size:14px}
+.minimal-bottom-nav,.minimal-more{display:none!important}
+.fk-dialog{width:min(94vw,420px);border:1px solid #555;border-radius:26px;padding:0;background:#fff;color:#111;max-height:87vh;overflow:auto}
+.fk-dialog::backdrop{background:#000b}
+.fk-dialog form{padding:22px}
+.fk-dialog-top{display:flex;justify-content:space-between;align-items:center;color:#a48200;font-size:12px;letter-spacing:.14em;font-weight:950}
+.fk-close{width:40px;height:40px;background:#eee;border:0;border-radius:50%;font-size:27px}
+.fk-dialog h2{font-size:29px;margin:12px 0}
+.fk-dialog p{color:#666;font-size:14px;line-height:1.5}
+.fk-dialog label{display:grid;gap:6px;font-size:14px;font-weight:850;margin:13px 0}
+.fk-dialog input{min-height:52px;border-radius:13px;border:1px solid #bbb;padding:8px 12px;font-size:19px;color:#111;background:#fafafa}
+.fk-save{width:100%;min-height:55px;background:#FFD400;color:#111;border:0;border-radius:15px;font-weight:950;font-size:17px}
+@media(max-width:380px){.fk-tile{min-height:198px;padding:10px}.fk-tile-art{height:94px}.fk-tile-art img{height:95px}.fk-tile strong{font-size:18px}.fk-tile-desc{font-size:11px}.fk-stat{padding:9px 7px}}
+@media(min-width:600px){.fk-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.fk-hero{height:420px!important}}
+@media(min-width:900px){.fk-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(prefers-reduced-motion:reduce){.fk-track span{transition:none}}
+
 </style>
 </head>
 <body>
 <div class="wrap">
 
-<div id="minimalHome" class="minimal-home">  <div class="hero">
-    <div class="brand-row">
-      <div><span class="brand-kicker">ТВОЁ ПРОСТРАНСТВО ДЛЯ ПРОГРЕССА</span><h1>FITKNOW<span class="minimal-brand-dot">.</span></h1></div>
-      <button class="theme-toggle" id="themeToggle" type="button" onclick="toggleTheme()" aria-label="Переключить тему">☾</button>
-    </div>
-    <p class="sub">Твой фитнес. Твой прогресс.</p>
+<div id="minimalHome" class="minimal-home fk-home">
+  <div class="fk-hero">
+   <div class="fk-brand">FITKNOW<span>.</span></div>
+   <p class="fk-tagline">Твой фитнес.<br>Твой прогресс. Каждый день.</p>
+   <div class="fk-underline"></div>
   </div>
-
-  <div class="minimal-hero-message"><span class="minimal-eyebrow">ТВОЙ ПЛАН</span><strong>Сильнее.<br>Каждый день.</strong><span class="minimal-hero-trail" aria-hidden="true"></span></div>
-  <div class="minimal-dashboard-panel">
-  <section class="nutrition-targets" aria-label="Дневные цели питания">
+  <section class="fk-info" aria-label="Личный прогресс">
+    <div class="fk-info-top"><span>МОЙ ПРОГРЕСС</span><button type="button" id="fkProgressEdit">Изменить ↗</button></div>
+    <div class="fk-progress-line"><strong id="fkProgressTitle">Заполни свой план</strong><strong id="fkProgressPct">—</strong></div>
+    <div class="fk-track" role="progressbar" id="fkProgressTrack" aria-label="Прогресс тренировок" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="fkProgressFill"></span></div>
+    <p class="fk-progress-hint" id="fkProgressHint">Задай план тренировок и цель по весу</p>
+    <div class="fk-stats">
+     <button type="button" data-fk-edit class="fk-stat"><small>◉ ВЕС</small><strong id="fkWeight">—</strong><span>Текущий</span></button>
+     <button type="button" data-fk-edit class="fk-stat"><small>◎ ЦЕЛЬ</small><strong id="fkGoal">—</strong><span>Желаемый</span></button>
+     <button type="button" data-fk-edit class="fk-stat"><small>▥ ЗАНЯТИЯ</small><strong id="fkSessions">—</strong><span>Выполнено / план</span></button>
+    </div>
+  </section>
+  <div class="minimal-dashboard-panel fk-macros">
+      <section class="nutrition-targets" aria-label="Дневные цели питания">
     <div class="nutrition-targets-head"><span>Цели на день</span><small></small></div>
     <div class="macros" id="nutritionTargets">
       <label class="macro-box protein" for="macroProtein"><span class="macro-tag">БЕЛКИ</span><span class="macro-input-wrap"><input id="macroProtein" class="macro-input" type="number" min="0" max="1000" step="1" inputmode="decimal" placeholder="—" aria-label="Белки в граммах"><span>г</span></span></label>
@@ -1655,12 +1739,34 @@ body[data-screen="home"] .minimal-hero-message strong{
     <label class="kcal-target-row" for="macroCalories"><span class="kcal-label">Калорийность <small>цель на сутки</small></span><span class="calories-edit"><input id="macroCalories" type="number" min="0" max="15000" step="1" inputmode="numeric" placeholder="—" aria-label="Калорийность в килокалориях"><span>ккал</span></span></label>
     <div class="nutrition-target-actions"><span id="macroSaveStatus" role="status" aria-live="polite">Значения сохраняются на устройстве</span><button type="button" class="macro-clear-btn" id="macroClearBtn">Сбросить</button></div>
   </section>
-
-  <div class="minimal-home-actions">
-    <button class="minimal-home-btn" type="button" data-open-tab="train">Открыть тренировки <span aria-hidden="true">↗</span></button>
-    <button class="minimal-home-btn minimal-home-btn-secondary" type="button" data-open-tab="data">Управление данными <span aria-hidden="true">↗</span></button>
   </div>
-  </div>
+  <section class="fk-menu" aria-labelledby="fkMenuHeading">
+   <div class="fk-menu-head"><span>МОИ РАЗДЕЛЫ</span><h2 id="fkMenuHeading">Всё под рукой.</h2></div>
+   <div class="fk-grid"><button type="button" class="fk-tile" data-open-tab="train" aria-label="Тренировки: Программа и веса">
+<span class="fk-tile-art"><img src="./assets/dashboard-icons/training.webp?v=17" alt="" loading="lazy"></span>
+<strong>Тренировки</strong><span class="fk-tile-desc">Программа и веса</span><span class="fk-tile-arrow" aria-hidden="true">→</span></button>
+<button type="button" class="fk-tile" data-open-tab="food" aria-label="Питание: Рацион и записи">
+<span class="fk-tile-art"><img src="./assets/dashboard-icons/nutrition.webp?v=17" alt="" loading="lazy"></span>
+<strong>Питание</strong><span class="fk-tile-desc">Рацион и записи</span><span class="fk-tile-arrow" aria-hidden="true">→</span></button>
+<button type="button" class="fk-tile" data-open-tab="supplements" aria-label="БАДы: Добавки и график">
+<span class="fk-tile-art"><img src="./assets/dashboard-icons/supplements.webp?v=17" alt="" loading="lazy"></span>
+<strong>БАДы</strong><span class="fk-tile-desc">Добавки и график</span><span class="fk-tile-arrow" aria-hidden="true">→</span></button>
+<button type="button" class="fk-tile" data-open-tab="analyses" aria-label="Анализы: Личные показатели">
+<span class="fk-tile-art"><img src="./assets/dashboard-icons/analyses.webp?v=17" alt="" loading="lazy"></span>
+<strong>Анализы</strong><span class="fk-tile-desc">Личные показатели</span><span class="fk-tile-arrow" aria-hidden="true">→</span></button>
+<button type="button" class="fk-tile" data-open-tab="cardio" aria-label="Кардио: Нагрузки и план">
+<span class="fk-tile-art"><img src="./assets/dashboard-icons/cardio.webp?v=17" alt="" loading="lazy"></span>
+<strong>Кардио</strong><span class="fk-tile-desc">Нагрузки и план</span><span class="fk-tile-arrow" aria-hidden="true">→</span></button>
+<button type="button" class="fk-tile" data-open-tab="health" aria-label="Протокол: Заметки и контроль">
+<span class="fk-tile-art"><img src="./assets/dashboard-icons/protocol.webp?v=17" alt="" loading="lazy"></span>
+<strong>Протокол</strong><span class="fk-tile-desc">Заметки и контроль</span><span class="fk-tile-arrow" aria-hidden="true">→</span></button>
+<button type="button" class="fk-tile" data-open-tab="data" aria-label="Данные: Импорт и экспорт">
+<span class="fk-tile-art"><img src="./assets/dashboard-icons/data.webp?v=17" alt="" loading="lazy"></span>
+<strong>Данные</strong><span class="fk-tile-desc">Импорт и экспорт</span><span class="fk-tile-arrow" aria-hidden="true">→</span></button>
+<button type="button" class="fk-tile" data-open-tab="foods" aria-label="Продукты: Список продуктов">
+<span class="fk-tile-art"><img src="./assets/dashboard-icons/nutrition.webp?v=17" alt="" loading="lazy"></span>
+<strong>Продукты</strong><span class="fk-tile-desc">Список продуктов</span><span class="fk-tile-arrow" aria-hidden="true">→</span></button></div>
+  </section>
 </div>
   <input type="radio" name="tabgroup" id="tab-food" class="tab-radio">
   <input type="radio" name="tabgroup" id="tab-cardio" class="tab-radio">
@@ -1683,6 +1789,7 @@ body[data-screen="home"] .minimal-hero-message strong{
   </div>
 
   <div class="minimal-section-heading" id="minimalSectionHeading" hidden>
+    <button type="button" class="fk-back" data-open-tab="home">← Главная</button>
     <div><span>FITKNOW / МОЙ ПЛАН</span><h2 id="minimalPageTitle">Тренировки</h2></div>
     <button id="minimalSectionTheme" type="button" aria-label="Сменить тему разделов" title="Сменить тему">◐</button>
   </div>
@@ -1828,23 +1935,22 @@ body[data-screen="home"] .minimal-hero-message strong{
   </div>
 
   <p class="footer-note">Значения зависят от состава продуктов</p>
-  <nav class="minimal-bottom-nav" aria-label="Основная навигация">
-   <button type="button" data-nav="home" aria-label="Главная" title="Главная"><svg style="stroke:#111111!important;color:#111111!important;fill:none!important" class="minimal-nav-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7"/><path d="M5 9v12h14V9"/><path d="M9 21v-7h6v7"/></svg></button>
-   <button type="button" data-nav="train" aria-label="Тренировки" title="Тренировки"><svg style="stroke:#111111!important;color:#111111!important;fill:none!important" class="minimal-nav-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 8v8m4-11v14m12-14v14m4-11v8M6 12h12"/></svg></button>
-   <button type="button" data-nav="food" aria-label="Питание" title="Питание"><svg style="stroke:#111111!important;color:#111111!important;fill:none!important" class="minimal-nav-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h18a9 9 0 0 1-18 0Z"/><path d="M2 12h20M8 7V4m4 3V3m4 4V4"/></svg></button>
-   <button type="button" data-nav="data" aria-label="Данные" title="Данные"><svg style="stroke:#111111!important;color:#111111!important;fill:none!important" class="minimal-nav-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></button>
-   <button type="button" id="minimalMoreToggle" aria-haspopup="true" aria-expanded="false" aria-controls="minimalMore" aria-label="Ещё разделы" title="Ещё разделы"><svg style="stroke:#111111!important;color:#111111!important;fill:none!important" class="minimal-nav-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
-  </nav> <div id="minimalMore" class="minimal-more" hidden role="dialog" aria-modal="false" aria-label="Дополнительные разделы">
-   <div class="minimal-more-top"><strong>Все разделы</strong><button type="button" id="minimalMoreClose" aria-label="Закрыть">✕</button></div>
-   <button type="button" data-open-tab="cardio">Кардио <span>↗</span></button>
-   <button type="button" data-open-tab="foods">Продукты <span>↗</span></button>
-   <button type="button" data-open-tab="supplements">БАДы <span>↗</span></button>
-   <button type="button" data-open-tab="analyses">Анализы <span>↗</span></button>
-   <button type="button" data-open-tab="health">Личные записи <span>↗</span></button>
-  </div>
+  
 
 </div>
 
+<dialog id="fkProgressDialog" class="fk-dialog">
+ <form method="dialog" id="fkProgressForm">
+  <div class="fk-dialog-top"><span>МОИ ЦЕЛИ</span><button value="cancel" formnovalidate aria-label="Закрыть" class="fk-close">×</button></div>
+  <h2>Личный прогресс</h2>
+  <p>Значения сохраняются в этом браузере. Прогресс тренировок указывается вручную.</p>
+  <label>Текущий вес, кг<input type="number" id="fkInputWeight" min="20" max="350" step=".1" inputmode="decimal" placeholder="Например, 93.5"></label>
+  <label>Целевой вес, кг<input type="number" id="fkInputGoal" min="20" max="350" step=".1" inputmode="decimal" placeholder="Например, 87"></label>
+  <label>Тренировок по плану<input type="number" id="fkInputPlanned" min="0" max="1000" step="1" inputmode="numeric" placeholder="Количество"></label>
+  <label>Завершено тренировок<input type="number" id="fkInputDone" min="0" max="1000" step="1" inputmode="numeric" placeholder="Количество"></label>
+  <button type="submit" value="save" class="fk-save">Сохранить</button>
+ </form>
+</dialog>
 <script>
 function toggleCheck(cb){
   cb.closest('.check-item').classList.toggle('checked', cb.checked);
@@ -2658,6 +2764,52 @@ function initFitknowFileLabels(){
  });
 }
 initFitknowFileLabels();
+
+/* FITKNOW DASHBOARD V17 — separate local progress; preserves original training/nutrition data */
+(function(){
+ const KEY='fitknow_dashboard_progress_v17';
+ const blank={weight:null,goal:null,done:0,planned:0};
+ let state={...blank};
+ try{const saved=JSON.parse(localStorage.getItem(KEY)||'null');if(saved&&typeof saved==='object'){
+  for(const k of ['weight','goal'])if(saved[k]!==null&&saved[k]!==undefined&&Number.isFinite(+saved[k])&&+saved[k]>0)state[k]=+saved[k];
+  for(const k of ['done','planned'])if(Number.isInteger(+saved[k])&&+saved[k]>=0)state[k]=+saved[k];
+ }}catch(e){}
+ const $=id=>document.getElementById(id),fmt=n=>Number(n).toLocaleString('ru-RU',{maximumFractionDigits:1});
+ function render(){
+  $('fkWeight').textContent=state.weight===null?'—':fmt(state.weight)+' кг';
+  $('fkGoal').textContent=state.goal===null?'—':fmt(state.goal)+' кг';
+  $('fkSessions').textContent=state.planned?state.done+' / '+state.planned:'—';
+  const pct=state.planned>0?Math.round(Math.min(1,state.done/state.planned)*100):null;
+  $('fkProgressPct').textContent=pct===null?'—':pct+'%';
+  $('fkProgressTitle').textContent=state.planned?'Тренировочный план':'Заполни свой план';
+  $('fkProgressHint').textContent=state.planned?state.done+' из '+state.planned+' тренировок выполнено':'Задай план тренировок и цель по весу';
+  $('fkProgressFill').style.width=(pct||0)+'%';
+  $('fkProgressTrack').setAttribute('aria-valuenow',String(pct||0));
+ }
+ const dlg=$('fkProgressDialog'),form=$('fkProgressForm');
+ function open(){
+  $('fkInputWeight').value=state.weight??'';$('fkInputGoal').value=state.goal??'';
+  $('fkInputDone').value=state.done||'';$('fkInputPlanned').value=state.planned||'';
+  if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','');
+ }
+ $('fkProgressEdit').addEventListener('click',open);
+ document.querySelectorAll('[data-fk-edit]').forEach(x=>x.addEventListener('click',open));
+ form.addEventListener('submit',e=>{
+  if(e.submitter?.value==='cancel')return;
+  e.preventDefault();if(!form.reportValidity())return;
+  const next={
+   weight:$('fkInputWeight').value?Number($('fkInputWeight').value):null,
+   goal:$('fkInputGoal').value?Number($('fkInputGoal').value):null,
+   done:Number($('fkInputDone').value)||0,
+   planned:Number($('fkInputPlanned').value)||0
+  };
+  if(next.done>next.planned&&next.planned>0){$('fkInputDone').setCustomValidity('Завершённых тренировок не может быть больше запланированных');form.reportValidity();$('fkInputDone').setCustomValidity('');return;}
+  state=next;try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}
+  render();if(dlg.close)dlg.close();else dlg.removeAttribute('open');
+ });
+ render();
+})();
+
 </script>
 </body>
 </html>
