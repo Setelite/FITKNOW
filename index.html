@@ -1710,8 +1710,8 @@ box-shadow:inset 0 1px 2px #ffffff70,0 8px 24px #0008,0 2px 10px #ffd40021;curso
 @media(prefers-reduced-motion:reduce){.fk-track span{transition:none}}
 
 
-/* FITKNOW V21 — final hero placement: explicit translate, not only background-position.
-   Main subjects move right independently of legacy background alignment rules. */
+/* FITKNOW V22 — balanced athlete placement on mobile.
+   Reduce the excessive V21 offset (225px) to keep both athletes on screen. */
 @media (max-width:599px) {
  body[data-screen="home"] .minimal-home.fk-home::after {
   left:auto!important;
@@ -1719,8 +1719,8 @@ box-shadow:inset 0 1px 2px #ffffff70,0 8px 24px #0008,0 2px 10px #ffd40021;curso
   width:calc(100% + 22px)!important;
   background-position:right top!important;
   background-size:auto 100%!important;
-  transform:translate3d(225px,0,0)!important;
-  -webkit-transform:translate3d(225px,0,0)!important;
+  transform:translate3d(85px,0,0)!important;
+  -webkit-transform:translate3d(85px,0,0)!important;
  }
 }
 @media (min-width:600px) {
@@ -1728,8 +1728,8 @@ box-shadow:inset 0 1px 2px #ffffff70,0 8px 24px #0008,0 2px 10px #ffd40021;curso
   left:auto!important;
   right:-22px!important;
   background-position:right top!important;
-  transform:translate3d(105px,0,0)!important;
-  -webkit-transform:translate3d(105px,0,0)!important;
+  transform:translate3d(40px,0,0)!important;
+  -webkit-transform:translate3d(40px,0,0)!important;
  }
 }
 
@@ -2636,7 +2636,7 @@ initFitknowIllustrations();
 <script>
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () {
-    navigator.serviceWorker.register('./sw.js?v=21', {updateViaCache:'none'}).then(function(reg){ return reg.update(); }).catch(function () {});
+    navigator.serviceWorker.register('./sw.js?v=22', {updateViaCache:'none'}).then(function(reg){ return reg.update(); }).catch(function () {});
   });
 }
 
