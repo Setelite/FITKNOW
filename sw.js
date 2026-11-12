@@ -1,9 +1,10 @@
 /* FITKNOW V10. Always retrieve current HTML while online; cache app shell for offline use. */
-const CACHE_NAME='fitknow-v22-couple-balanced';
+const CACHE_NAME='fitknow-v23-approved-white-outfit';
 const APP_SHELL=[
  './index.html','./manifest.webmanifest','./icon.svg',
  './apple-touch-icon.png','./icon-192.png','./icon-512.png',
  './assets/fitness-couple-approved.webp',
+ './assets/fitness-couple-white-v23.webp',
  './assets/fitness-couple-hero-v14.webp', './assets/fitness-couple-fullbody-v16.webp',
  './assets/dashboard-icons/nutrition.webp',
  './assets/dashboard-icons/training.webp',
