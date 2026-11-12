@@ -1829,6 +1829,20 @@ body[data-screen="home"] .minimal-home.fk-home::after {
  body[data-screen="home"] .fk-info {padding-top:8px!important}
 }
 
+/* FITKNOW V28 — lift progress controls over the bottom of the hero */
+@media (max-width:599px) {
+ body[data-screen="home"] .minimal-home.fk-home .fk-info {
+   margin-top:-68px!important;
+   padding-top:8px!important;
+   position:relative!important;
+   z-index:5!important;
+ }
+ body[data-screen="home"] .minimal-home.fk-home .fk-info-top {
+   position:relative!important;
+   z-index:6!important;
+ }
+}
+
 </style>
 </head>
 <body>
@@ -2732,7 +2746,7 @@ initFitknowIllustrations();
 <script>
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () {
-    navigator.serviceWorker.register('./sw.js?v=27', {updateViaCache:'none'}).then(function(reg){ return reg.update(); }).catch(function () {});
+    navigator.serviceWorker.register('./sw.js?v=28', {updateViaCache:'none'}).then(function(reg){ return reg.update(); }).catch(function () {});
   });
 }
 
