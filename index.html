@@ -1753,7 +1753,7 @@ body[data-screen="home"] .minimal-home.fk-home::after {
    right:0!important;
    top:0!important;
    width:100%!important;
-   height:clamp(365px,112vw,470px)!important;
+   height:clamp(345px,108vw,440px)!important;
    background-image:url("./assets/fitness-couple-full-v24.webp?v=24")!important;
    background-size:auto 100%!important;
    background-position:right top!important;
@@ -1767,7 +1767,7 @@ body[data-screen="home"] .minimal-home.fk-home::after {
    -webkit-mask:none!important;
  }
  body[data-screen="home"] .fk-hero {
-   height:clamp(365px,112vw,470px)!important;
+   height:clamp(345px,108vw,440px)!important;
  }
 }
 @media (min-width:600px) {
@@ -2694,7 +2694,7 @@ initFitknowIllustrations();
 <script>
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () {
-    navigator.serviceWorker.register('./sw.js?v=24', {updateViaCache:'none'}).then(function(reg){ return reg.update(); }).catch(function () {});
+    navigator.serviceWorker.register('./sw.js?v=25', {updateViaCache:'none'}).then(function(reg){ return reg.update(); }).catch(function () {});
   });
 }
 
