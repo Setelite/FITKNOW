@@ -1742,6 +1742,55 @@ body[data-screen="home"] .minimal-home.fk-home::after {
  background-size:auto 100%!important;
 }
 
+
+/* FITKNOW V24: full-length approved artwork; preserve feet and place near right edge.
+   Overrides all older hero background, height and transform rules. */
+@media (max-width:599px) {
+ body[data-screen="home"] .minimal-home.fk-home::after {
+   content:""!important;
+   display:block!important;
+   left:auto!important;
+   right:0!important;
+   top:0!important;
+   width:100%!important;
+   height:clamp(475px,135vw,575px)!important;
+   background-image:url("./assets/fitness-couple-full-v24.webp?v=24")!important;
+   background-size:auto 100%!important;
+   background-position:right top!important;
+   background-repeat:no-repeat!important;
+   transform:translate3d(19px,0,0)!important;
+   -webkit-transform:translate3d(19px,0,0)!important;
+   opacity:1!important;
+   filter:none!important;
+   -webkit-filter:none!important;
+   mask:none!important;
+   -webkit-mask:none!important;
+ }
+ body[data-screen="home"] .fk-hero {
+   height:clamp(475px,135vw,575px)!important;
+ }
+}
+@media (min-width:600px) {
+ body[data-screen="home"] .minimal-home.fk-home::after {
+   top:0!important;
+   right:0!important;
+   width:100%!important;
+   height:590px!important;
+   background-image:url("./assets/fitness-couple-full-v24.webp?v=24")!important;
+   background-size:auto 100%!important;
+   background-position:right top!important;
+   background-repeat:no-repeat!important;
+   transform:none!important;
+   -webkit-transform:none!important;
+   opacity:1!important;
+   filter:none!important;
+   -webkit-filter:none!important;
+   mask:none!important;
+   -webkit-mask:none!important;
+ }
+ body[data-screen="home"] .fk-hero {height:590px!important}
+}
+
 </style>
 </head>
 <body>
@@ -2645,7 +2694,7 @@ initFitknowIllustrations();
 <script>
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () {
-    navigator.serviceWorker.register('./sw.js?v=23', {updateViaCache:'none'}).then(function(reg){ return reg.update(); }).catch(function () {});
+    navigator.serviceWorker.register('./sw.js?v=24', {updateViaCache:'none'}).then(function(reg){ return reg.update(); }).catch(function () {});
   });
 }
 
