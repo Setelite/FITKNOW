@@ -1,0 +1,52 @@
+name: Build FITKNOW approved white-outfit hero
+on:
+  push:
+    paths:
+      - '.github/workflows/build-fitknow-white-outfit.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Download approved FITKNOW visual and crop hero only
+        env:
+          SOURCE_URL: "https://d2ol7oe51mr4n9.cloudfront.net/user_3JSxcOirL4mYOchZOe1eqkneCaW/d027bc15-d4f8-44b3-8a98-dcf2f3d891d0.png"
+        run: |
+          python -m pip install --quiet pillow
+          python - <<'PY'
+          import os, io, urllib.request
+          from PIL import Image, ImageDraw, ImageFilter
+          url=os.environ['SOURCE_URL']
+          with urllib.request.urlopen(url, timeout=50) as r:
+              src=Image.open(io.BytesIO(r.read())).convert('RGB')
+          assert src.size==(941,1672),f'Unexpected approved image dimensions: {src.size}'
+          # Only the approved pair: remove the webapp header, caption, stats, buttons.
+          pair=src.crop((420,82,900,690)).convert('RGBA')
+          # The crop comes from an approved mockup, so blend its image edges into
+          # pure black and never include the button or the browser controls.
+          w,h=pair.size
+          mask=Image.new('L',(w,h),255)
+          pixels=mask.load()
+          for y in range(h):
+              for x in range(w):
+                  edge=min(1.0, x/24.0, (w-1-x)/35.0)
+                  bottom=min(1.0,(h-1-y)/95.0)
+                  pixels[x,y]=max(0,min(255,round(255*max(0,edge)*max(0,bottom))))
+          pair.putalpha(mask)
+          canvas=Image.new('RGBA',(650,760),(9,9,11,255))
+          canvas.alpha_composite(pair,(140,0))
+          os.makedirs('assets',exist_ok=True)
+          canvas.convert('RGB').save('assets/fitness-couple-white-v23.webp','WEBP',quality=91,method=6)
+          print('New hero:',Image.open('assets/fitness-couple-white-v23.webp').size)
+          PY
+      - name: Commit generated approved hero
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/fitness-couple-white-v23.webp
+          git diff --cached --quiet || (git commit -m "Add approved white outfit FITKNOW hero V23" && git pull --rebase origin main && git push origin HEAD:main)
