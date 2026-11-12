@@ -1791,6 +1791,21 @@ body[data-screen="home"] .minimal-home.fk-home::after {
  body[data-screen="home"] .fk-hero {height:590px!important}
 }
 
+/* FITKNOW V26 — compact artwork, natural edge blending */
+@media (max-width:599px) {
+ body[data-screen="home"] .minimal-home.fk-home::after {
+   height:clamp(315px,92vw,385px)!important;
+   background-position:right 15px top!important;
+   background-size:auto 100%!important;
+   -webkit-mask-image:linear-gradient(to right,transparent 29%,#000 49%)!important;
+   mask-image:linear-gradient(to right,transparent 29%,#000 49%)!important;
+ }
+ body[data-screen="home"] .fk-hero {
+   height:clamp(315px,92vw,385px)!important;
+ }
+ body[data-screen="home"] .fk-info {padding-top:8px!important}
+}
+
 </style>
 </head>
 <body>
@@ -2694,7 +2709,7 @@ initFitknowIllustrations();
 <script>
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () {
-    navigator.serviceWorker.register('./sw.js?v=25', {updateViaCache:'none'}).then(function(reg){ return reg.update(); }).catch(function () {});
+    navigator.serviceWorker.register('./sw.js?v=26', {updateViaCache:'none'}).then(function(reg){ return reg.update(); }).catch(function () {});
   });
 }
 
