@@ -1,5 +1,5 @@
 /* FITKNOW V10. Always retrieve current HTML while online; cache app shell for offline use. */
-const CACHE_NAME='fitknow-v28-raised-progress';
+const CACHE_NAME='fitknow-v29-higher-progress';
 const APP_SHELL=[
  './index.html','./manifest.webmanifest','./icon.svg',
  './apple-touch-icon.png','./icon-192.png','./icon-512.png',
