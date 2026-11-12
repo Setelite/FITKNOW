@@ -1733,6 +1733,15 @@ box-shadow:inset 0 1px 2px #ffffff70,0 8px 24px #0008,0 2px 10px #ffd40021;curso
  }
 }
 
+
+/* FITKNOW V23 — approved couple, woman in white sports top and shorts */
+body[data-screen="home"] .minimal-home.fk-home::after {
+ background-image:url("./assets/fitness-couple-white-v23.webp?v=23")!important;
+ background-repeat:no-repeat!important;
+ background-position:right top!important;
+ background-size:auto 100%!important;
+}
+
 </style>
 </head>
 <body>
@@ -2636,7 +2645,7 @@ initFitknowIllustrations();
 <script>
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () {
-    navigator.serviceWorker.register('./sw.js?v=22', {updateViaCache:'none'}).then(function(reg){ return reg.update(); }).catch(function () {});
+    navigator.serviceWorker.register('./sw.js?v=23', {updateViaCache:'none'}).then(function(reg){ return reg.update(); }).catch(function () {});
   });
 }
 
