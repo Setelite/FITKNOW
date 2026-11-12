@@ -1,5 +1,5 @@
 /* FITKNOW V10. Always retrieve current HTML while online; cache app shell for offline use. */
-const CACHE_NAME='fitknow-v25-compact-hero';
+const CACHE_NAME='fitknow-v26-blended-hero';
 const APP_SHELL=[
  './index.html','./manifest.webmanifest','./icon.svg',
  './apple-touch-icon.png','./icon-192.png','./icon-512.png',
