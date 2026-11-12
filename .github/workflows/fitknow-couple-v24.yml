@@ -1,0 +1,40 @@
+name: Install approved full-length FITKNOW athletes
+on:
+  push:
+    paths:
+      - '.github/workflows/fitknow-couple-v24.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build-hero:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Download approved couple, crop empty space, keep shoes and legs
+        env:
+          APPROVED_IMAGE_URL: 'https://d2ol7oe51mr4n9.cloudfront.net/user_3JSxcOirL4mYOchZOe1eqkneCaW/9699fab4-79b9-4be9-8167-1539cd236db2.png'
+        run: |
+          python -m pip install --quiet pillow requests
+          python - <<'PY'
+          import io,os,requests
+          from PIL import Image
+          url=os.environ['APPROVED_IMAGE_URL']
+          response=requests.get(url,timeout=90);response.raise_for_status()
+          photo=Image.open(io.BytesIO(response.content)).convert("RGB")
+          w,h=photo.size
+          # Original is portrait, all the way down to the shoes. Crop empty side margins only.
+          x1=round(w*.032);x2=round(w*.76)
+          hero=photo.crop((x1,0,x2,h))
+          hero.thumbnail((850,1500), Image.Resampling.LANCZOS)
+          hero.save("assets/fitness-couple-full-v24.webp","WEBP",quality=88,method=6)
+          print("source",photo.size,"hero",hero.size)
+          PY
+      - name: Commit approved image into repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/fitness-couple-full-v24.webp
+          git diff --cached --quiet || (git commit -m "Install full-body approved white-outfit FITKNOW hero artwork" && git pull --rebase origin main && git push origin HEAD:main)
