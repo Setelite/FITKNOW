@@ -1843,6 +1843,17 @@ body[data-screen="home"] .minimal-home.fk-home::after {
  }
 }
 
+/* FITKNOW V31 — keep the section header below iPhone status bar.
+   Apply spacing only to internal screens; do not shift the home hero or cards individually. */
+@media (max-width:599px) {
+ body[data-screen="section"] > .wrap {
+   padding-top:calc(48px + env(safe-area-inset-top, 0px))!important;
+ }
+ body[data-screen="section"] .minimal-section-heading {
+   padding-top:16px!important;
+ }
+}
+
 </style>
 </head>
 <body>
