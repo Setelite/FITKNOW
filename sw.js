@@ -1,6 +1,7 @@
 /* FITKNOW V10. Always retrieve current HTML while online; cache app shell for offline use. */
-const CACHE_NAME='fitknow-v29-higher-progress';
+const CACHE_NAME='fitknow-v31-office-import';
 const APP_SHELL=[
+ './file-import.js?v=31','./vendor/mammoth-1.11.0.min.js','./vendor/xlsx-0.20.3.min.js',
  './index.html','./manifest.webmanifest','./icon.svg',
  './apple-touch-icon.png','./icon-192.png','./icon-512.png',
  './assets/fitness-couple-approved.webp',

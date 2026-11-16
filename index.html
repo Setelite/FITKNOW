@@ -2011,13 +2011,13 @@ body[data-screen="home"] .minimal-home.fk-home::after {
 
     <div class="import-card" id="trainingProgramDataImport">
       <h2>Программа тренировок</h2>
-      <p>Вставь текст из заметок, Telegram или сообщения тренера. Можно также выбрать файл <b>.txt</b>, <b>.md</b>, <b>.csv</b> или <b>.json</b>. Приложение распознаёт дни, упражнения и схемы подходов.</p>
+      <p>Вставь текст из заметок, Telegram или сообщения тренера. Можно также выбрать файл <b>.txt</b>, <b>.md</b>, <b>.csv</b>, <b>.json</b>, <b>.docx</b> или Excel <b>.xlsx / .xls</b>. Приложение распознаёт дни, упражнения и схемы подходов.</p>
       <textarea class="import-textarea" id="programImportText" placeholder="Пример:
 День 1 — Грудь и бицепс
 1. Жим лёжа — 4×10
 2. Сведение рук — 3×12"></textarea>
       <div class="import-actions">
-        <label class="file-label">Выбрать файл<input id="programFileInput" type="file" accept=".txt,.md,.csv,.json,text/plain,text/markdown,application/json"></label><span class="selected-file" aria-live="polite">Файл не выбран</span>
+        <label class="file-label">Выбрать файл<input id="programFileInput" type="file" accept=".txt,.md,.csv,.json,.docx,.xlsx,.xls,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,text/plain,text/markdown,application/json"></label><span class="selected-file" aria-live="polite">Файл не выбран</span>
         <button class="action-btn primary" type="button" onclick="importTrainingProgram()">Импортировать</button>
         <button class="action-btn" type="button" onclick="copyCurrentProgram()">Скопировать текущую</button>
         <button class="action-btn danger" type="button" onclick="restoreDefaultProgram()">Вернуть исходную</button>
@@ -2028,7 +2028,7 @@ body[data-screen="home"] .minimal-home.fk-home::after {
     <div class="data-grid">
       <div class="data-card">
         <h3>Импорт информации</h3>
-        <p>Поддерживаются TXT, MD, CSV и JSON. Для заметок iPhone можно просто вставить скопированный текст.</p>
+        <p>Поддерживаются TXT, MD, CSV, JSON, DOCX и Excel (.xlsx, .xls). Текст из Word и строки всех непустых листов Excel появятся в поле ниже. Оформление и изображения не переносятся. Максимальный размер — 20 МБ. Для заметок iPhone можно просто вставить скопированный текст.</p>
         <select class="data-select" id="dataImportTarget" aria-label="Раздел для импорта">
           <option value="food">Питание</option>
           <option value="supplements">БАДы</option>
@@ -2038,7 +2038,7 @@ body[data-screen="home"] .minimal-home.fk-home::after {
           <option value="health">Личные записи</option>
         </select>
         <textarea class="import-textarea" id="dataImportText" placeholder="Вставьте информацию сюда…"></textarea>
-        <label class="file-picker">Выбрать файл<input type="file" id="dataImportFile" accept=".txt,.md,.csv,.json,text/plain,text/markdown,text/csv,application/json"></label><span class="selected-file" aria-live="polite">Файл не выбран</span>
+        <label class="file-picker">Выбрать файл<input type="file" id="dataImportFile" accept=".txt,.md,.csv,.json,.docx,.xlsx,.xls,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,text/plain,text/markdown,text/csv,application/json"></label><span class="selected-file" aria-live="polite">Файл не выбран</span>
         <div class="import-status" id="dataStatus" aria-live="polite"></div>
         <div class="data-actions">
           <button class="btn primary" type="button" onclick="importSectionData()">Загрузить в раздел</button>
@@ -2088,6 +2088,7 @@ body[data-screen="home"] .minimal-home.fk-home::after {
   <button type="submit" value="save" class="fk-save">Сохранить</button>
  </form>
 </dialog>
+<script src="./file-import.js?v=31"></script>
 <script>
 function toggleCheck(cb){
   cb.closest('.check-item').classList.toggle('checked', cb.checked);
@@ -2281,14 +2282,15 @@ function initProgramFileInput(){
     const file = input.files?.[0];
     if(!file) return;
     try{
-      const value = await file.text();
+      setImportStatus('Читаем файл…');
+      const value = await readFitknowFile(file, true);
       const textarea = document.getElementById('programImportText');
       if(textarea) textarea.value = value;
       if(file.name.toLowerCase().endsWith('.json')){
         try{ applyTrainingProgram(JSON.parse(value), file.name); return; }catch(e){}
       }
       applyTrainingProgram(parseTrainingText(value), file.name);
-    }catch(e){ setImportStatus('Не удалось прочитать файл.', true); }
+    }catch(e){ setImportStatus(e.message || 'Не удалось прочитать файл.', true); }
   });
 }
 
@@ -2678,13 +2680,14 @@ function initDataFiles(){
   sectionFile?.addEventListener('change', async()=>{
     const file = sectionFile.files?.[0]; if(!file) return;
     try{
-      const text = await file.text();
+      setDataStatus('Читаем файл…');
+      const text = await readFitknowFile(file);
       if(file.name.toLowerCase().endsWith('.json')){
         try{ const data=JSON.parse(text); if(data?.format===BACKUP_FORMAT){ restoreFitknowBackup(data); return; } }catch(e){}
       }
       const area=document.getElementById('dataImportText'); if(area) area.value=text;
       setDataStatus('Файл «'+file.name+'» прочитан. Выберите раздел и нажмите «Загрузить».');
-    }catch(e){ setDataStatus('Не удалось прочитать файл.', true); }
+    }catch(e){ setDataStatus(e.message || 'Не удалось прочитать файл.', true); }
   });
   document.getElementById('backupImportFile')?.addEventListener('change', async event=>{
     const file=event.target.files?.[0]; if(!file) return;
@@ -2746,7 +2749,7 @@ initFitknowIllustrations();
 <script>
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () {
-    navigator.serviceWorker.register('./sw.js?v=29', {updateViaCache:'none'}).then(function(reg){ return reg.update(); }).catch(function () {});
+    navigator.serviceWorker.register('./sw.js?v=31', {updateViaCache:'none'}).then(function(reg){ return reg.update(); }).catch(function () {});
   });
 }
 
