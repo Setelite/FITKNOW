@@ -1854,6 +1854,18 @@ body[data-screen="home"] .minimal-home.fk-home::after {
  }
 }
 
+/* FITKNOW V33 — lower the entire mobile home hero below the iPhone status bar.
+   Move artwork and content together; preserve their relative alignment. */
+@media (max-width:599px) {
+ body[data-screen="home"] .minimal-home.fk-home {
+   --fk-home-top-safe: max(48px, calc(env(safe-area-inset-top, 0px) + 16px));
+   padding-top:var(--fk-home-top-safe)!important;
+ }
+ body[data-screen="home"] .minimal-home.fk-home::after {
+   top:var(--fk-home-top-safe)!important;
+ }
+}
+
 </style>
 </head>
 <body>
@@ -2760,7 +2772,7 @@ initFitknowIllustrations();
 <script>
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () {
-    navigator.serviceWorker.register('./sw.js?v=32', {updateViaCache:'none'}).then(function(reg){ return reg.update(); }).catch(function () {});
+    navigator.serviceWorker.register('./sw.js?v=33', {updateViaCache:'none'}).then(function(reg){ return reg.update(); }).catch(function () {});
   });
 }
 
